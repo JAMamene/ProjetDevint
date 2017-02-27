@@ -4,6 +4,7 @@
 Jeu permettant de composer de la musique à partir des "samples", échantillons, mis à la disposition de l'utilisateur.
 
 ##Membres de l'équipe
+
 *Les Casters Flottants* :
    *  [Charlotte Aknin](mailto:charlotte.aknin@etu.unice.fr)
    *  [Guillaume Andre](mailto:guillaume.andre@etu.unice.fr)
