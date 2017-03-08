@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<scores game="dvt.jeuchronometre.JeuChrono">
+  <joueur>
+    <score>32</score>
+    <name>Paul</name>
+  </joueur>
+  <joueur>
+    <score>50</score>
+    <name>Pierre</name>
+  </joueur>
+  <joueur>
+	<name>Jacques</name>
+	<score>12</score>
+  </joueur>
+  <joueur>
+    <score>6</score>
+    <name>Jean</name>
+  </joueur>
+  <joueur>
+    <name>Marie</name>
+    <score>242</score>
+  </joueur>
+</scores>
