@@ -7,7 +7,7 @@ Jeu permettant de composer de la musique à partir des "samples", échantillons,
 
 
 ### Membres de l'équipe
-*Les Casters Flottants* :
+*Les Castors Flottants* :
    *  [Charlotte Aknin](mailto:charlotte.aknin@etu.unice.fr)
    *  [Guillaume Andre](mailto:guillaume.andre@etu.unice.fr)
    *  [Zaki Berouk](mailto:zaki.berouk@etu.unice.fr)
@@ -16,6 +16,6 @@ Jeu permettant de composer de la musique à partir des "samples", échantillons,
 
 
 ### Public visé + Persona 
-Toute personne aimant la musique et pouvant utiliser une souris, persona visé : Liam, relié à l'ESAT. (cf. page 4 in documentation/CRinstitut.pdf)
+Toute personne aimant la musique et pouvant utiliser une souris, persona visé : Liam. (cf. page 4 in documentation/CRinstitut.pdf)
 
 [Nous contacter](mailto:charlotte.aknin@etu.unice.fr,guillaume.andre@etu.unice.fr,mailto:zaki.berouk@etu.unice.fr,jean-adam.puskaric@etu.unice.fr)
