@@ -1,6 +1,7 @@
 package dvt.run;
 
 import dvt.devint.menu.MenuDevint;
+import dvt.polybeatmaker.JeuTest;
 import javafx.application.Application;
 
 /** cette classe lance les différents exemples de jeux DeViNT.
@@ -12,6 +13,10 @@ import javafx.application.Application;
  */
 public class MainMenu extends MenuDevint {
 
+	public static void main(String[] s){
+		Application.launch(MainMenu.class,s);
+	}
+	
 	@Override
 	public String titre() {
 		return "Jeux DeViNT";
@@ -19,10 +24,7 @@ public class MainMenu extends MenuDevint {
 	
 	@Override
 	public void initMenu() {
-	}
-	
-	public static void main(String[] s){
-		Application.launch(MainMenu.class,s);
+        control.addMenuItem("Test", (x) -> new JeuTest());
 	}
 
 }
