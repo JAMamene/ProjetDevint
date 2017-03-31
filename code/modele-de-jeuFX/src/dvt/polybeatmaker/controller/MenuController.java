@@ -1,25 +1,23 @@
 package dvt.polybeatmaker.controller;
 
-import dvt.jeu.simple.ControleDevint;
+import dvt.devint.menu.MenuDevint;
+import dvt.polybeatmaker.model.MainGame;
 
 /**
  * Main menu controller.
  */
-public class MenuController extends ControleDevint {
+public class MenuController extends MenuDevint {
 
     @Override
-    protected void init() {
-
+    public String titre() {
+        return "PolybeatMaker";
     }
 
     @Override
-    protected void reset() {
-
+    public void initMenu() {
+        control.addMenuItem("Démarrer PolybeatMaker", (x) -> new MainGame());
+        control.addMenuItem("Choisir instruments", (x) -> new MainGame());
+        control.addMenuItem("Aide", (x) -> new MainGame());
+        control.addMenuItem("Quitter", (x) -> new MainGame());
     }
-
-    @Override
-    public void mapTouchToActions() {
-
-    }
-
 }

@@ -10,8 +10,6 @@ public class Instrument {
 
     private List<File> soundFiles;
 
-
-
     public Sound getSound(int index) {
         return null;
     }
