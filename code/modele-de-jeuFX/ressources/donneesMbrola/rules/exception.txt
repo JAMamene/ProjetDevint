@@ -1,5 +1,4 @@
 ## les exceptions de prononciation
-
 CLASSES
 
 CLASS V [aeiouàâéèêëîïôöùûü]			# voyelles
@@ -185,8 +184,6 @@ T [[ tous_ ]] -> t u s
 
 ## er  en fin de mot
 A [[ reporter ]] T -> R 2 p O R t E R
-T [[ fichier ]] F -> f i S i e
-
 
 ## ien
 [[ bienvenue ]] F -> b i e~ v 2 n y 
