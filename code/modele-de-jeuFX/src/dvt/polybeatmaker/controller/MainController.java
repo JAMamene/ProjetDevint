@@ -3,16 +3,13 @@ package dvt.polybeatmaker.controller;
 import dvt.jeu.simple.ControleDevint;
 import dvt.polybeatmaker.model.Scheduler;
 import dvt.polybeatmaker.model.Sound;
-import javafx.scene.media.AudioClip;
 
-import java.io.File;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Controller for the main screen.
  */
-public class MainController extends ControleDevint{
+public class MainController extends ControleDevint {
 
     private Scheduler scheduler;
 
@@ -48,4 +45,9 @@ public class MainController extends ControleDevint{
     public void mapTouchToActions() {
 
     }
+
+    public void addSound(Sound sound) {
+        scheduler.addToQueue(sound);
+    }
+
 }
