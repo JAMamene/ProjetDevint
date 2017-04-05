@@ -14,9 +14,4 @@ public class Sound {
         timer = new Timer();
     }
 
-    public boolean toBePlayed(Button b)
-    {
-        return true;
-    }
-
 }
