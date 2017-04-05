@@ -1,24 +1,42 @@
 package dvt.polybeatmaker.controller;
 
 import dvt.jeu.simple.ControleDevint;
+import dvt.polybeatmaker.model.Scheduler;
 import dvt.polybeatmaker.model.Sound;
+import javafx.scene.media.AudioClip;
 
+import java.io.File;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Controller for the main screen.
  */
-public class MainController extends ControleDevint {
+public class MainController extends ControleDevint{
+
+    private Scheduler scheduler;
 
     private List<InstrumentController> instruments;
 
-    public void addSound(Sound sound) {
-
-    }
-
     @Override
     protected void init() {
-
+        scheduler = new Scheduler();
+//        Sound phil = new Sound("phillippe.mp3");
+//        Sound tg = new Sound("tg.mp3");
+//        scheduler.addToQueue(phil);
+//        scheduler.addToQueue(tg);
+//        try {
+//            TimeUnit.SECONDS.sleep(10);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        scheduler.removeFromQueue(tg);
+//        try {
+//            TimeUnit.SECONDS.sleep(10);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        scheduler.cancel();
     }
 
     @Override

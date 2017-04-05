@@ -1,5 +1,6 @@
 package dvt.polybeatmaker.controller;
 
+import dvt.jeu.simple.ControleDevint;
 import dvt.polybeatmaker.model.Instrument;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
