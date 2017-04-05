@@ -18,6 +18,5 @@ public class MenuController extends MenuDevint {
         control.addMenuItem("Démarrer PolybeatMaker", (x) -> new MainGame());
         control.addMenuItem("Choisir instruments", (x) -> new MainGame());
         control.addMenuItem("Aide", (x) -> new MainGame());
-        control.addMenuItem("Quitter", (x) -> new MainGame());
     }
 }

@@ -1,17 +1,22 @@
 package dvt.polybeatmaker.model;
 
-import javafx.scene.control.Button;
+import javafx.scene.media.AudioClip;
 
-import java.util.Timer;
+import java.io.File;
 
 /**
  * Single sound sample.
  */
 public class Sound {
-    Timer timer;
-    public Sound()
-    {
-        timer = new Timer();
+
+    private AudioClip ac;
+
+    public Sound(String file) {
+        ac = new AudioClip(new File("../ressources/sons/" + file).toURI().toString());
+    }
+
+    public void play() {
+        ac.play();
     }
 
 }

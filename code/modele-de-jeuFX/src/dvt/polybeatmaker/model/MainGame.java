@@ -10,6 +10,12 @@ import javafx.scene.Parent;
 import java.io.File;
 import java.io.IOException;
 
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.io.File;
+
 /**
  * Jeu devint principal.
  */
