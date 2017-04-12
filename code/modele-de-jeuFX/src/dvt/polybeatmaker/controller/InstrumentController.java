@@ -2,6 +2,7 @@ package dvt.polybeatmaker.controller;
 
 import dvt.polybeatmaker.model.Instrument;
 import dvt.polybeatmaker.model.PolybeatModel;
+import dvt.polybeatmaker.model.Sound;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -26,6 +27,8 @@ public class InstrumentController {
     private List<Button> buttons;
     private PolybeatModel model;
 
+    private Sound activated;
+
     public void setInstrument(Instrument instrument) {
         this.instrument = instrument;
     }
@@ -44,8 +47,11 @@ public class InstrumentController {
         }
         for (Button b : buttons) {
             b.setOnMouseClicked(event -> {
-                model.addSound(instrument.getSound(Integer.parseInt(b.getId().substring(1))));
-                System.out.println(b.getId());
+                if (activated != null) {
+                    model.removeSound(activated);
+                }
+                activated = instrument.getSound(Integer.parseInt(b.getId()));
+                model.addSound(activated);
             });
         }
         picture.setImage(new Image(instrument.getPicURL()));

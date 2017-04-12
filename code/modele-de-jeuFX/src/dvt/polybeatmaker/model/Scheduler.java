@@ -27,7 +27,9 @@ public class Scheduler extends Timer {
     }
 
     public void addToQueue(Sound s) {
-        sounds.add(s);
+        if (!sounds.contains(s)) {
+            sounds.add(s);
+        }
     }
 
     public void removeFromQueue(Sound s) {
