@@ -46,11 +46,12 @@ public class InstrumentController {
             buttons.add((Button) c);
         }
         for (Button b : buttons) {
+            b.setStyle(instrument.getStyle());
             b.setOnMouseClicked(event -> {
                 if (activated != null) {
                     model.removeSound(activated);
                 }
-                activated = instrument.getSound(Integer.parseInt(b.getId()));
+                activated = instrument.getSound(Integer.parseInt(b.getId().substring(1)));
                 model.addSound(activated);
             });
         }
