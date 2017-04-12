@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111"
-      fx:controller="dvt.polybeatmaker.controller.InstrumentController">
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="dvt.polybeatmaker.controller.InstrumentController">
 
     <children>
 
@@ -15,48 +14,42 @@
             <children>
                 <VBox fx:id="box1">
                     <children>
-                        <Button mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0"
-                                style="-fx-background-color: #f2db8e;">
+                        <Button fx:id="a1" mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0" style="-fx-background-color: #f2db8e;">
                             <VBox.margin>
-                                <Insets bottom="30.0" right="30.0"/>
+                                <Insets bottom="30.0" right="30.0" />
                             </VBox.margin>
                         </Button>
 
-                        <Button mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0"
-                                style="-fx-background-color: f2db8e;">
+                        <Button fx:id="a3" mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0" style="-fx-background-color: f2db8e;">
                             <VBox.margin>
-                                <Insets bottom="30.0" right="30.0"/>
+                                <Insets bottom="30.0" right="30.0" />
                             </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0"
-                                style="-fx-background-color: f2db8e;">
+                        <Button fx:id="a5" mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0" style="-fx-background-color: f2db8e;">
                             <VBox.margin>
-                                <Insets right="30.0"/>
+                                <Insets right="30.0" />
                             </VBox.margin>
                         </Button>
                     </children>
                 </VBox>
                 <VBox fx:id="box2">
                     <children>
-                        <Button mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0"
-                                style="-fx-background-color: f2db8e;">
+                        <Button fx:id="a2" mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0" style="-fx-background-color: f2db8e;">
                             <VBox.margin>
-                                <Insets bottom="30.0"/>
+                                <Insets bottom="30.0" />
                             </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0"
-                                style="-fx-background-color: f2db8e;"/>
+                        <Button fx:id="a4" mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0" style="-fx-background-color: f2db8e;" />
                     </children>
                     <HBox.margin>
-                        <Insets top="40.0"/>
+                        <Insets top="40.0" />
                     </HBox.margin>
                 </VBox>
             </children>
         </HBox>
-        <ImageView fx:id="picture" fitHeight="150.0" fitWidth="160.0" pickOnBounds="true"
-                   preserveRatio="true">
+        <ImageView fx:id="picture" fitHeight="150.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
             <VBox.margin>
-                <Insets top="30.0"/>
+                <Insets top="30.0" />
             </VBox.margin>
         </ImageView>
     </children>
