@@ -1,6 +1,7 @@
 package dvt.polybeatmaker.controller;
 
 import dvt.polybeatmaker.model.Instrument;
+import dvt.polybeatmaker.model.PolybeatModel;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -21,12 +22,16 @@ public class InstrumentController {
     @FXML private VBox box2;
     @FXML private ImageView picture;
 
-    private MainController parent;
     private Instrument instrument;
     private List<Button> buttons;
+    private PolybeatModel model;
 
     public void setInstrument(Instrument instrument) {
         this.instrument = instrument;
+    }
+
+    public void setModel(PolybeatModel model) {
+        this.model = model;
     }
 
     public void init() throws MalformedURLException {
@@ -39,7 +44,7 @@ public class InstrumentController {
         }
         for (Button b : buttons) {
             b.setOnMouseClicked(event -> {
-                //parent.addSound(instrument.getSound(Integer.parseInt(b.getId())));
+                model.addSound(instrument.getSound(Integer.parseInt(b.getId())));
             });
         }
         picture.setImage(new Image(instrument.getPicURL()));
