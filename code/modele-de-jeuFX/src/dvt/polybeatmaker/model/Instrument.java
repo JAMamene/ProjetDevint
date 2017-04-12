@@ -7,6 +7,7 @@ import java.net.MalformedURLException;
  * Created by Meriveri on 05/04/2017.
  */
 public enum Instrument {
+
     PIANO("piano"),
     GUITAR("guitar"),
     ELECTRICGUITAR("electricguitar"),
@@ -21,6 +22,10 @@ public enum Instrument {
 
     public String getPicURL() throws MalformedURLException {
         return new File("../ressources/images/" + name + ".svg").toURI().toURL().toString();
+    }
+
+    public Sound getSound(int id) {
+        return new Sound(name + "/" + name + id);
     }
 
 }
