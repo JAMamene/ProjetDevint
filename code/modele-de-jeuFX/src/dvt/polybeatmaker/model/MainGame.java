@@ -16,6 +16,8 @@ import java.io.IOException;
  */
 public class MainGame extends JeuDevint {
 
+    private PolybeatModel model;
+
     @Override
     public String titre() {
         return "PolybeatMaker";
@@ -23,7 +25,8 @@ public class MainGame extends JeuDevint {
 
     @Override
     protected ModeleDevint initModel() {
-        return new PolybeatModel();
+        model = new PolybeatModel();
+        return model;
     }
 
     @Override
@@ -35,6 +38,7 @@ public class MainGame extends JeuDevint {
             controller = loader.getController();
             SceneDevint sc = new SceneDevint(root, ConstantesDevint.MAX_SCREEN_WIDTH, ConstantesDevint.MAX_SCREEN_HEIGHT);
             controller.setScene(sc);
+            controller.setModel(model);
         } catch (IOException e) {
             e.printStackTrace();
         }
