@@ -2,8 +2,6 @@ package dvt.polybeatmaker.controller;
 
 import dvt.jeu.simple.ControleDevint;
 import dvt.polybeatmaker.model.Instrument;
-import dvt.polybeatmaker.model.Scheduler;
-import dvt.polybeatmaker.model.Sound;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
@@ -19,11 +17,8 @@ public class MainController extends ControleDevint {
     @FXML
     private HBox mainBox;
 
-    private Scheduler scheduler;
-
     @Override
     protected void init() {
-        scheduler = new Scheduler();
         try {
             for (Instrument instrument : Instrument.values()) {
                 FXMLLoader loader = new FXMLLoader(new File("../ressources/fxml/instrument.fxml").toURI().toURL());
@@ -63,8 +58,6 @@ public class MainController extends ControleDevint {
 
     }
 
-    public void addSound(Sound sound) {
-        scheduler.addToQueue(sound);
-    }
+
 
 }

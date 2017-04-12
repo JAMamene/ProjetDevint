@@ -23,7 +23,7 @@ public class MainGame extends JeuDevint {
 
     @Override
     protected ModeleDevint initModel() {
-        return new ModeleDevintTest();
+        return new PolybeatModel();
     }
 
     @Override
