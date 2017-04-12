@@ -1,5 +1,8 @@
 package dvt.polybeatmaker.model;
 
+import java.io.File;
+import java.net.MalformedURLException;
+
 /**
  * Created by Meriveri on 05/04/2017.
  */
@@ -18,4 +21,8 @@ public enum Instrument
         this.name = name;
     }
 
-}
+    public String getPicURL() throws MalformedURLException {
+        return new File("../ressources/images/" + name + ".svg").toURI().toURL().toString();
+        }
+
+        }

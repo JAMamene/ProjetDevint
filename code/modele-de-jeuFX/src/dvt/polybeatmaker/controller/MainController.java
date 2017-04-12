@@ -28,6 +28,9 @@ public class MainController extends ControleDevint {
             for (Instrument instrument : Instrument.values()) {
                 FXMLLoader loader = new FXMLLoader(new File("../ressources/fxml/instrument.fxml").toURI().toURL());
                 mainBox.getChildren().add(loader.load());
+                InstrumentController controller =  loader.getController();
+                controller.setInstrument(instrument);
+                controller.init();
             }
         } catch (IOException e) {
             e.printStackTrace();
