@@ -28,6 +28,7 @@ public class InstrumentController {
     private PolybeatModel model;
 
     private Sound activated;
+    private Button activatedButton;
 
     public void setInstrument(Instrument instrument) {
         this.instrument = instrument;
@@ -51,8 +52,14 @@ public class InstrumentController {
                 if (activated != null) {
                     model.removeSound(activated);
                 }
-                activated = instrument.getSound(Integer.parseInt(b.getId().substring(1)));
-                model.addSound(activated);
+                if (activatedButton == b) {
+                    model.removeSound(activated);
+                    activatedButton = null;
+                } else {
+                    activated = instrument.getSound(Integer.parseInt(b.getId().substring(1)));
+                    model.addSound(activated);
+                    activatedButton = b;
+                }
             });
         }
         picture.setImage(new Image(instrument.getPicURL()));
