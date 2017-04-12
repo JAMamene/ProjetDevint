@@ -24,8 +24,7 @@ public class MainController extends ControleDevint {
         this.model = model;
     }
 
-    @Override
-    protected void init() {
+    public void initializeStuff() {
         try {
             for (Instrument instrument : Instrument.values()) {
                 FXMLLoader loader = new FXMLLoader(new File("../ressources/fxml/instrument.fxml").toURI().toURL());
@@ -38,22 +37,11 @@ public class MainController extends ControleDevint {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        Sound phil = new Sound("phillippe.mp3");
-//        Sound tg = new Sound("tg.mp3");
-//        scheduler.addToQueue(phil);
-//        scheduler.addToQueue(tg);
-//        try {
-//            TimeUnit.SECONDS.sleep(10);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        scheduler.removeFromQueue(tg);
-//        try {
-//            TimeUnit.SECONDS.sleep(10);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        scheduler.cancel();
+    }
+
+    @Override
+    protected void init() {
+
     }
 
     @Override

@@ -5,6 +5,7 @@ import dvt.devint.SceneDevint;
 import dvt.jeu.simple.ControleDevint;
 import dvt.jeu.simple.JeuDevint;
 import dvt.jeu.simple.ModeleDevint;
+import dvt.polybeatmaker.controller.MainController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
@@ -36,9 +37,11 @@ public class MainGame extends JeuDevint {
             FXMLLoader loader = new FXMLLoader(new File("../ressources/fxml/mainGame.fxml").toURI().toURL());
             Parent root = loader.load();
             controller = loader.getController();
+            MainController main = (MainController) controller;
             SceneDevint sc = new SceneDevint(root, ConstantesDevint.MAX_SCREEN_WIDTH, ConstantesDevint.MAX_SCREEN_HEIGHT);
-            controller.setScene(sc);
-            controller.setModel(model);
+            main.setScene(sc);
+            main.setModel(model);
+            main.initializeStuff();
         } catch (IOException e) {
             e.printStackTrace();
         }
