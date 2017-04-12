@@ -1,19 +1,21 @@
 package dvt.polybeatmaker.model;
 
-import java.io.File;
-import java.util.List;
-
 /**
- * Music instrument.
+ * Created by Meriveri on 05/04/2017.
  */
-public class Instrument {
+public enum Instrument
+{
+    PIANO("piano"),
+    GUITAR("guitar"),
+    ELECTRICGUITAR("electricguitar"),
+    CELLO("cello"),
+    DRUMS("drums");
 
-    private List<File> soundFiles;
+    private String name;
 
-    public Sound getSound(int index) {
-        return null;
+    Instrument (String name)
+    {
+        this.name = name;
     }
-
-
 
 }

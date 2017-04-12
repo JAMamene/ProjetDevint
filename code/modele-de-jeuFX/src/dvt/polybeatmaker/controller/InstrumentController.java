@@ -1,6 +1,5 @@
 package dvt.polybeatmaker.controller;
 
-import dvt.jeu.simple.ControleDevint;
 import dvt.polybeatmaker.model.Instrument;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -35,7 +34,7 @@ public class InstrumentController {
         }
         for (Button b : buttons) {
             b.setOnMouseClicked(event -> {
-                parent.addSound(instrument.getSound(Integer.parseInt(b.getId())));
+                //parent.addSound(instrument.getSound(Integer.parseInt(b.getId())));
             });
         }
     }
