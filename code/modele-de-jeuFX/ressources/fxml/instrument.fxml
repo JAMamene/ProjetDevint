@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -14,19 +15,35 @@
             <children>
                 <VBox fx:id="box1" spacing="30.0">
                     <children>
-                  <ToggleButton fx:id="a1" mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0" />
-                  <ToggleButton fx:id="a3" mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0" />
-                  <ToggleButton fx:id="a5" mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0" />
+                        <ToggleButton fx:id="a1" mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </ToggleButton>
+                        <ToggleButton fx:id="a3" mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ToggleButton>
+                        <ToggleButton fx:id="a5" mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ToggleButton>
                     </children>
                 </VBox>
                 <VBox fx:id="box2" spacing="30.0">
                     <HBox.margin>
                         <Insets top="40.0" />
                     </HBox.margin>
-               <children>
-                  <ToggleButton fx:id="a2" mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0" />
-                  <ToggleButton fx:id="a4" mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0" />
-               </children>
+                    <children>
+                        <ToggleButton fx:id="a2" mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ToggleButton>
+                        <ToggleButton fx:id="a4" mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></ToggleButton>
+                    </children>
                 </VBox>
             </children>
         </HBox>
