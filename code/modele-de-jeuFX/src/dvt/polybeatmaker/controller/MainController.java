@@ -3,6 +3,8 @@ package dvt.polybeatmaker.controller;
 import dvt.jeu.simple.ControleDevint;
 import dvt.polybeatmaker.model.Scheduler;
 import dvt.polybeatmaker.model.Sound;
+import javafx.fxml.FXML;
+import javafx.scene.layout.HBox;
 
 import java.util.List;
 
@@ -10,6 +12,9 @@ import java.util.List;
  * Controller for the main screen.
  */
 public class MainController extends ControleDevint {
+
+    @FXML
+    private HBox mainBox;
 
     private Scheduler scheduler;
 
