@@ -8,7 +8,7 @@ import java.util.TimerTask;
 
 public class Scheduler extends Timer {
 
-    private static final int LOOPTIME = 5000;
+    private static final int LOOPTIME = 6000;
 
     private List<Sound> sounds;
 

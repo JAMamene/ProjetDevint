@@ -40,7 +40,7 @@ public class MainGame extends JeuDevint {
             MainController main = (MainController) controller;
             SceneDevint sc = new SceneDevint(root, ConstantesDevint.MAX_SCREEN_WIDTH, ConstantesDevint.MAX_SCREEN_HEIGHT);
             main.setScene(sc);
-            main.setModel(model);
+            main.setPolybeatModel(model);
             main.initializeStuff();
         } catch (IOException e) {
             e.printStackTrace();

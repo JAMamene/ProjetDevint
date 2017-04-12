@@ -44,7 +44,8 @@ public class InstrumentController {
         }
         for (Button b : buttons) {
             b.setOnMouseClicked(event -> {
-                model.addSound(instrument.getSound(Integer.parseInt(b.getId())));
+                model.addSound(instrument.getSound(Integer.parseInt(b.getId().substring(1))));
+                System.out.println(b.getId());
             });
         }
         picture.setImage(new Image(instrument.getPicURL()));

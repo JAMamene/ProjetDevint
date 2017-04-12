@@ -20,7 +20,7 @@ public class MainController extends ControleDevint {
     @FXML
     private HBox mainBox;
 
-    private void setModel(PolybeatModel model) {
+    public void setPolybeatModel(PolybeatModel model) {
         this.model = model;
     }
 

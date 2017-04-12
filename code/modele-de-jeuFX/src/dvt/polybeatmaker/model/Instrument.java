@@ -12,6 +12,7 @@ public enum Instrument {
     GUITAR("guitar"),
     ELECTRICGUITAR("electricguitar"),
     CELLO("cello"),
+    BASS("bass"),
     DRUMS("drums");
 
     private String name;
@@ -25,7 +26,7 @@ public enum Instrument {
     }
 
     public Sound getSound(int id) {
-        return new Sound(name + "/" + name + id);
+        return new Sound(name + "/" + name + id + ".mp3");
     }
 
 }
