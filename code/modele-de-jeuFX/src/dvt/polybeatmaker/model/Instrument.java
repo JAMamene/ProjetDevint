@@ -8,12 +8,12 @@ import java.net.MalformedURLException;
  */
 public enum Instrument {
 
-    PIANO("piano","#a48ef2"),
+    PIANO("piano", "#a48ef2"),
     GUITAR("guitar", "#8ee4f2"),
-    ELECTRICGUITAR("electricguitar","#8ef2a1"),
-    CELLO("cello","#f2e18e"),
-    BASS("bass","#f28e99"),
-    DRUMS("drums","#c33646");
+    ELECTRIC_GUITAR("electric_guitar", "#8ef2a1"),
+    CELLO("cello", "#f2e18e"),
+    BASS("bass", "#f28e99"),
+    DRUMS("drums", "#c33646");
 
     private String name;
     private String color;
@@ -24,7 +24,7 @@ public enum Instrument {
     }
 
     public String getPicURL() throws MalformedURLException {
-        return new File("../ressources/images/" + name + ".svg").toURI().toURL().toString();
+        return new File("../ressources/images/" + name + ".png").toURI().toURL().toString();
     }
 
     public Sound getSound(int id) {
