@@ -5,17 +5,26 @@ import dvt.polybeatmaker.model.Instrument;
 import dvt.polybeatmaker.model.PolybeatModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Controller for the main screen.
  */
 public class MainController extends ControleDevint {
 
+    public static String BLACK = "#000000;";
+    public static String WHITE = "#ffffff;";
+    public boolean isBlack = true;
     private PolybeatModel model;
+    private List<InstrumentController> childrenControllers;
+    private AnchorPane root;
 
     @FXML
     private HBox mainBox;
@@ -24,12 +33,15 @@ public class MainController extends ControleDevint {
         this.model = model;
     }
 
-    public void initializeStuff() {
+    @Override
+    protected void init() {
         try {
+            childrenControllers = new ArrayList<>();
             for (Instrument instrument : Instrument.values()) {
                 FXMLLoader loader = new FXMLLoader(new File("../ressources/fxml/instrument.fxml").toURI().toURL());
                 mainBox.getChildren().add(loader.load());
-                InstrumentController controller =  loader.getController();
+                InstrumentController controller = loader.getController();
+                childrenControllers.add(controller);
                 controller.setInstrument(instrument);
                 controller.setModel(model);
                 controller.init();
@@ -40,20 +52,23 @@ public class MainController extends ControleDevint {
     }
 
     @Override
-    protected void init() {
-
-    }
-
-    @Override
     protected void reset() {
 
     }
 
     @Override
     public void mapTouchToActions() {
-
+        scene.mapKeyPressedToConsumer(KeyCode.F3, (x) -> swapBackgroundColor());
     }
 
+    private void swapBackgroundColor() {
+        getScene().getRoot().setStyle("-fx-background-color:" + (isBlack ? WHITE : BLACK));
+        InstrumentController.setHighlightColor(isBlack ? BLACK : WHITE);
+        for (InstrumentController controller : childrenControllers) {
+            controller.updateHighlight();
+        }
+        isBlack = !isBlack;
+    }
 
 
 }
