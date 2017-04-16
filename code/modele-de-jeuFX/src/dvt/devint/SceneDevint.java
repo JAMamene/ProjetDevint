@@ -7,9 +7,7 @@ import javafx.scene.SceneAntialiasing;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Paint;
-
 import t2s.SIVOXDevint;
-import static dvt.devint.ConstantesDevint.*;
 
 import java.util.function.Consumer;
 
@@ -87,7 +85,7 @@ public class SceneDevint extends Scene {
 			);
 		// la voix
 		this.sivox = new SIVOXDevint(2);
-        this.sivox.playWav(ACCUEIL_SON);
+        //this.sivox.playWav(ACCUEIL_SON);
 	}
 	
 	/** la voix devint

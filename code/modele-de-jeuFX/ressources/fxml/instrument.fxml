@@ -8,49 +8,51 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="dvt.polybeatmaker.controller.InstrumentController">
-
-    <children>
-
-        <HBox spacing="20.0">
-            <children>
-                <VBox fx:id="box1" spacing="30.0">
-                    <children>
-                        <ToggleButton fx:id="a1" mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0">
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                        </ToggleButton>
-                        <ToggleButton fx:id="a3" mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0">
+   <children>
+      <HBox spacing="40.0">
+         <children>
+            <VBox fx:id="box1" spacing="40.0">
+               <children>
+                  <ToggleButton fx:id="a1" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></ToggleButton>
-                        <ToggleButton fx:id="a5" mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0">
+                     </cursor>
+                  </ToggleButton>
+                  <ToggleButton fx:id="a3" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></ToggleButton>
-                    </children>
-                </VBox>
-                <VBox fx:id="box2" spacing="30.0">
-                    <HBox.margin>
-                        <Insets top="40.0" />
-                    </HBox.margin>
-                    <children>
-                        <ToggleButton fx:id="a2" mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0">
+                     </cursor>
+                  </ToggleButton>
+                  <ToggleButton fx:id="a5" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></ToggleButton>
-                        <ToggleButton fx:id="a4" mnemonicParsing="false" prefHeight="62.0" prefWidth="65.0">
+                     </cursor>
+                  </ToggleButton>
+               </children>
+            </VBox>
+            <VBox fx:id="box2" spacing="40.0">
+               <HBox.margin>
+                  <Insets top="40.0" />
+               </HBox.margin>
+               <children>
+                  <ToggleButton fx:id="a2" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></ToggleButton>
-                    </children>
-                </VBox>
-            </children>
-        </HBox>
-        <ImageView fx:id="picture" fitHeight="150.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
-            <VBox.margin>
-                <Insets top="30.0" />
-            </VBox.margin>
-        </ImageView>
-    </children>
+                     </cursor>
+                  </ToggleButton>
+                  <ToggleButton fx:id="a4" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ToggleButton>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <ImageView fx:id="picture" fitHeight="240.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin>
+      </ImageView>
+   </children>
 </VBox>

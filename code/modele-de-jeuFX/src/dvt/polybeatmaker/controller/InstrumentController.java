@@ -49,17 +49,24 @@ public class InstrumentController {
         for (ToggleButton b : buttons) {
             b.setStyle(instrument.getStyle());
             b.setOnMouseClicked(event -> {
+                if (!b.isSelected()) {
+                    b.setStyle(instrument.getStyle());
+                } else {
+                    b.setStyle(instrument.getStyle() + "-fx-border-color: #ffffff;" +
+                            "-fx-border-width: 10;");
+                }
+
                 if (activated != null) {
                     model.removeSound(activated);
                 }
-                if (activatedButton == b) {
-                    model.removeSound(activated);
-                    activatedButton = null;
-                } else {
-                    activated = instrument.getSound(Integer.parseInt(b.getId().substring(1)));
-                    model.addSound(activated);
-                    activatedButton = b;
-                }
+//                if (activatedButton == b) {
+//                    model.removeSound(activated);
+//                    activatedButton = null;
+//                } else {
+//                    activated = instrument.getSound(Integer.parseInt(b.getId().substring(1)));
+//                    model.addSound(activated);
+//                    activatedButton = b;
+//                }
             });
         }
         picture.setImage(new Image(instrument.getPicURL()));
