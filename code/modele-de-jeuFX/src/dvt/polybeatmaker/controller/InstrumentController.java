@@ -59,14 +59,14 @@ public class InstrumentController {
                 if (activated != null) {
                     model.removeSound(activated);
                 }
-//                if (activatedButton == b) {
-//                    model.removeSound(activated);
-//                    activatedButton = null;
-//                } else {
-//                    activated = instrument.getSound(Integer.parseInt(b.getId().substring(1)));
-//                    model.addSound(activated);
-//                    activatedButton = b;
-//                }
+                if (activatedButton == b) {
+                    model.removeSound(activated);
+                    activatedButton = null;
+                } else {
+                    activated = instrument.getSound(Integer.parseInt(b.getId().substring(1)));
+                    model.addSound(activated);
+                    activatedButton = b;
+                }
             });
         }
         picture.setImage(new Image(instrument.getPicURL()));
