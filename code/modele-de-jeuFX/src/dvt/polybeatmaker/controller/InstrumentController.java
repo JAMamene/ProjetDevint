@@ -82,6 +82,10 @@ public class InstrumentController {
                 model.removeSound(activated);
                 activatedButton = null;
             } else {
+                if (activatedButton != null) {
+                    activatedButton.setStyle(instrument.getStyle());
+                    activatedButton.setSelected(false);
+                }
                 activated = instrument.getSound(Integer.parseInt(b.getId().substring(1)));
                 model.addSound(activated);
                 activatedButton = b;
