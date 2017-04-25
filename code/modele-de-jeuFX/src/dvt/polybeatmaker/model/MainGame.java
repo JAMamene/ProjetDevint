@@ -41,6 +41,7 @@ public class MainGame extends JeuDevint {
             SceneDevint sc = new SceneDevint(root, ConstantesDevint.MAX_SCREEN_WIDTH, ConstantesDevint.MAX_SCREEN_HEIGHT);
             main.setScene(sc);
             main.setPolybeatModel(model);
+            this.setOnHidden(we -> model.getScheduler().cancel());
         } catch (IOException e) {
             e.printStackTrace();
         }

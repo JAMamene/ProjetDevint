@@ -1,6 +1,8 @@
 package dvt.polybeatmaker.model;
 
 
+import dvt.polybeatmaker.controller.MainController;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -8,22 +10,18 @@ import java.util.TimerTask;
 
 public class Scheduler extends Timer {
 
-    private static final int LOOPTIME = 6000;
+    private static final int LOOPTIME = 6;
+
+    private MainController controller;
+
+    private boolean started;
 
     private List<Sound> sounds;
 
     public Scheduler() {
         super();
+        started = false;
         sounds = new ArrayList<>();
-        schedule(
-                new TimerTask() {
-                    @Override
-                    public void run() {
-                        for (Sound s : sounds) {
-                            s.play();
-                        }
-                    }
-                }, 0, LOOPTIME);
     }
 
     public void addToQueue(Sound s) {
@@ -34,6 +32,36 @@ public class Scheduler extends Timer {
 
     public void removeFromQueue(Sound s) {
         sounds.remove(s);
+    }
+
+    public void setController(MainController controller) {
+        this.controller = controller;
+    }
+
+    public void start() {
+        started = true;
+        schedule(
+                new TimerTask() {
+                    int i = 0;
+
+                    @Override
+                    public void run() {
+                        double progress = i % (LOOPTIME) / (double) (LOOPTIME - 1);
+                        if (i % LOOPTIME == 0) {
+                            for (Sound s : sounds) {
+                                s.play();
+                            }
+                            controller.updateProgressBar(progress);
+                        } else {
+                            controller.updateProgressBar(progress);
+                        }
+                        i++;
+                    }
+                }, 0, 1000);
+    }
+
+    public boolean isStarted() {
+        return started;
     }
 
 }

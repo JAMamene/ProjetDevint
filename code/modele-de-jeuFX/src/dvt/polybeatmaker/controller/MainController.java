@@ -3,11 +3,16 @@ package dvt.polybeatmaker.controller;
 import dvt.jeu.simple.ControleDevint;
 import dvt.polybeatmaker.model.Instrument;
 import dvt.polybeatmaker.model.PolybeatModel;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +32,9 @@ public class MainController extends ControleDevint {
     private AnchorPane root;
 
     @FXML
+    private ProgressBar progressBar;
+
+    @FXML
     private HBox mainBox;
 
     public void setPolybeatModel(PolybeatModel model) {
@@ -44,6 +52,7 @@ public class MainController extends ControleDevint {
                 childrenControllers.add(controller);
                 controller.setInstrument(instrument);
                 controller.setModel(model);
+                model.getScheduler().setController(this);
                 controller.init();
             }
         } catch (IOException e) {
@@ -54,6 +63,15 @@ public class MainController extends ControleDevint {
     @Override
     protected void reset() {
 
+    }
+
+
+    public void updateProgressBar(double progress) {
+        Timeline timeline = new Timeline();
+        KeyValue keyValue = new KeyValue(progressBar.progressProperty(), progress);
+        KeyFrame keyFrame = new KeyFrame(new Duration(1000), keyValue);
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.play();
     }
 
     @Override

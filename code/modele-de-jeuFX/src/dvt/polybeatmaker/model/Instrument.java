@@ -11,7 +11,6 @@ public enum Instrument {
     PIANO("piano", "#a48ef2"),
     GUITAR("guitar", "#8ee4f2"),
     ELECTRIC_GUITAR("electric_guitar", "#8ef2a1"),
-    CELLO("cello", "#f2e18e"),
     BASS("bass", "#f28e99"),
     DRUMS("drums", "#c33646");
 

@@ -14,7 +14,14 @@ public class PolybeatModel extends ModeleDevint {
     }
 
     public void addSound(Sound sound) {
+        if (!scheduler.isStarted()) {
+            scheduler.start();
+        }
         scheduler.addToQueue(sound);
+    }
+
+    public Scheduler getScheduler() {
+        return scheduler;
     }
 
     public void removeSound(Sound s) {
