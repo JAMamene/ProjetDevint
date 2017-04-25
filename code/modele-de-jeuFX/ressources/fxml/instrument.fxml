@@ -6,6 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="dvt.polybeatmaker.controller.InstrumentController">
    <children>
@@ -17,16 +18,25 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <font>
+                        <Font name="System Bold" size="40.0" />
+                     </font>
                   </ToggleButton>
                   <ToggleButton fx:id="a3" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <font>
+                        <Font name="System Bold" size="40.0" />
+                     </font>
                   </ToggleButton>
                   <ToggleButton fx:id="a5" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <font>
+                        <Font size="40.0" />
+                     </font>
                   </ToggleButton>
                </children>
             </VBox>
@@ -39,11 +49,17 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <font>
+                        <Font name="System Bold" size="40.0" />
+                     </font>
                   </ToggleButton>
                   <ToggleButton fx:id="a4" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <font>
+                        <Font size="40.0" />
+                     </font>
                   </ToggleButton>
                </children>
             </VBox>

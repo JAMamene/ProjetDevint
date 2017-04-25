@@ -71,8 +71,10 @@ public class InstrumentController {
     public void swapBorder(ToggleButton b) {
         if (!b.isSelected()) {
             b.setStyle(instrument.getStyle());
+            b.setText("");
         } else {
             b.setStyle(instrument.getStyle() + BORDER_PROPERTY + HIGHLIGHT_COLOR);
+            b.setText("O");
         }
     }
 
@@ -84,6 +86,7 @@ public class InstrumentController {
             } else {
                 if (activatedButton != null) {
                     activatedButton.setStyle(instrument.getStyle());
+                    activatedButton.setText("");
                     activatedButton.setSelected(false);
                 }
                 activated = instrument.getSound(Integer.parseInt(b.getId().substring(1)));
