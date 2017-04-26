@@ -3,10 +3,7 @@ package dvt.polybeatmaker.model;
 
 import dvt.polybeatmaker.controller.MainController;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class Scheduler extends Timer {
 
@@ -21,7 +18,7 @@ public class Scheduler extends Timer {
     public Scheduler() {
         super();
         started = false;
-        sounds = new ArrayList<>();
+        sounds = Collections.synchronizedList(new ArrayList<>());
     }
 
     public void addToQueue(Sound s) {
@@ -44,10 +41,12 @@ public class Scheduler extends Timer {
                 new TimerTask() {
                     @Override
                     public void run() {
-                        for (Sound s : sounds) {
-                            s.play();
+                        synchronized (sounds) {
+                            for (Sound s : sounds) {
+                                s.play();
+                            }
                         }
-                        controller.updateProgressBar(LOOPTIME*1000);
+                        controller.updateProgressBar(LOOPTIME * 1000);
                     }
                 }, 0, LOOPTIME * 1000);
     }
