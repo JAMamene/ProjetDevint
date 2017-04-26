@@ -121,9 +121,11 @@ public class InstrumentController {
 
     public void loadActive(int id) {
         if (activatedButton != null) {
+            activatedButton.setSelected(false);
             toggleSound(activatedButton);
         }
         if (id != Sequence.INACTIVE) {
+            buttons.get(id-1).setSelected(true);
             toggleSound(buttons.get(id -1));
         }
     }
