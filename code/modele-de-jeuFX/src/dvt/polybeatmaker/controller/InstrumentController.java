@@ -24,6 +24,7 @@ public class InstrumentController {
             "-fx-border-color: ";
     private static String HIGHLIGHT_COLOR = MainController.WHITE;
 
+
     @FXML private VBox box1;
     @FXML private VBox box2;
     @FXML private ImageView picture;
@@ -100,10 +101,8 @@ public class InstrumentController {
     }
 
     public void updateHighlight() {
-        for (ToggleButton b : buttons) {
-            if (b.isSelected()) {
-                b.setStyle(instrument.getStyle() + BORDER_PROPERTY + HIGHLIGHT_COLOR);
-            }
+        if (activatedButton != null) {
+            activatedButton.setStyle(instrument.getStyle() + BORDER_PROPERTY + HIGHLIGHT_COLOR);
         }
     }
 

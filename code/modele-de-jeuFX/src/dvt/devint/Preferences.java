@@ -1,12 +1,10 @@
 package dvt.devint;
 
-import java.io.File;
-
-import com.sun.javafx.webkit.CursorManagerImpl;
-
 import javafx.scene.Cursor;
 import javafx.scene.ImageCursor;
 import javafx.scene.image.Image;
+
+import java.io.File;
 
 /** classe pour gérer les préférences
  * 
@@ -16,12 +14,18 @@ import javafx.scene.image.Image;
  *
  */
 public final class Preferences {
-	private static String STYLES_PATH="../ressources/styles/";
-
 	// gestion des couleurs
-	private final static String[] styleColorSheet ={"colorStyle1.css","colorStyle2.css","colorStyle3.css","colorStyle4.css","colorStyle5.css","colorStyle6.css"} ;
+	private final static String[] styleColorSheet ={"colorStyle1.css","colorStyle3.css","colorStyle2.css","colorStyle4.css","colorStyle5.css","colorStyle6.css"} ;
+	// gestion des fontes
+	private final static String[] styleFontSheet ={"fontStyleMoyen.css","fontStyleGrand.css","fontStylePetit.css"} ;
+	private static String STYLES_PATH="../ressources/styles/";
 	private static int numberOfColorStyles=styleColorSheet.length;
 	private static int currentColorStyle=0;
+	private static int numberOfFontStyles=styleFontSheet.length;
+	private static int currentFontStyle=0;
+	// gestion de la souris
+	private static int numberOfCursors=3;
+	private static int currentCursor=0;
 	
 	public static String currentColorStyle() {
 		File styleFile = new File(STYLES_PATH+styleColorSheet[currentColorStyle]);
@@ -32,11 +36,6 @@ public final class Preferences {
 		currentColorStyle = (currentColorStyle+1)%numberOfColorStyles;
 	}
 	
-	// gestion des fontes
-	private final static String[] styleFontSheet ={"fontStyleMoyen.css","fontStyleGrand.css","fontStylePetit.css"} ;
-	private static int numberOfFontStyles=styleFontSheet.length;
-	private static int currentFontStyle=0;
-	
 	public static String currentFontStyle() {
 		File styleFile = new File(STYLES_PATH+styleFontSheet[currentFontStyle]);
 	    return "file:///" + styleFile.getAbsolutePath().replace("\\", "/");
@@ -45,10 +44,6 @@ public final class Preferences {
 	public static void nextFontStyle() {
 		currentFontStyle = (currentFontStyle+1)%numberOfFontStyles;
 	}
-	
-	// gestion de la souris
-	private static int numberOfCursors=3;
-	private static int currentCursor=0;
 	
 	public static Cursor currentCursor() {
 		switch (currentCursor) {

@@ -26,7 +26,10 @@ public class MainController extends ControleDevint {
 
     public static String BLACK = "#000000;";
     public static String WHITE = "#ffffff;";
-    public boolean isBlack = true;
+
+    private static boolean[] BORDER_LIGHT = new boolean[]{true, false, true, true, false, true};
+
+    private int currentCSS = 0;
     private PolybeatModel model;
     private List<InstrumentController> childrenControllers;
     private AnchorPane root;
@@ -80,12 +83,15 @@ public class MainController extends ControleDevint {
     }
 
     private void swapBackgroundColor() {
-        getScene().getRoot().setStyle("-fx-background-color:" + (isBlack ? WHITE : BLACK));
-        InstrumentController.setHighlightColor(isBlack ? BLACK : WHITE);
+        if (currentCSS == 5) {
+            currentCSS = 0;
+        } else {
+            currentCSS++;
+        }
+        InstrumentController.setHighlightColor(BORDER_LIGHT[currentCSS] ? WHITE : BLACK);
         for (InstrumentController controller : childrenControllers) {
             controller.updateHighlight();
         }
-        isBlack = !isBlack;
     }
 
 

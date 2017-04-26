@@ -7,7 +7,7 @@
  /* très contrasté bleu, fond foncé, texte clair  */
 
 .root{
-   -fx-background: #e6e6ff;
+   -fx-background: #000000;
 }
 
 .grid-pane{
@@ -15,12 +15,12 @@
 }
 
 .fond{
-	-fx-fill: #e6e6ff;
+	-fx-fill: #000000;
 }
 
 .button{
 	 -fx-background-color: 
-  		#e6e6ff,
+  		#000000,
         #00004d; 
     -fx-background-insets: 0,5;
     -fx-background-radius: 0,20;
@@ -56,6 +56,14 @@
     -fx-background-radius: 0,20;
     -fx-padding: 10,10,10,10;
     -fx-text-fill: #e6e6ff;
+}
+
+#toggle {
+
+}
+
+#toggle:selected {
+
 }
 
 

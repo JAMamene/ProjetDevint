@@ -14,7 +14,7 @@
          <children>
             <VBox fx:id="box1" alignment="CENTER" spacing="40.0">
                <children>
-                  <ToggleButton fx:id="a1" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
+                  <ToggleButton fx:id="a1" ellipsisString="O" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -22,7 +22,7 @@
                         <Font name="System Bold" size="40.0" />
                      </font>
                   </ToggleButton>
-                  <ToggleButton fx:id="a3" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
+                  <ToggleButton fx:id="a3" ellipsisString="O" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -30,7 +30,7 @@
                         <Font name="System Bold" size="40.0" />
                      </font>
                   </ToggleButton>
-                  <ToggleButton fx:id="a5" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
+                  <ToggleButton fx:id="a5" ellipsisString="O" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -45,7 +45,7 @@
                   <Insets />
                </HBox.margin>
                <children>
-                  <ToggleButton fx:id="a2" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
+                  <ToggleButton fx:id="a2" ellipsisString="O" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -53,7 +53,7 @@
                         <Font name="System Bold" size="40.0" />
                      </font>
                   </ToggleButton>
-                  <ToggleButton fx:id="a4" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
+                  <ToggleButton fx:id="a4" ellipsisString="O" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
