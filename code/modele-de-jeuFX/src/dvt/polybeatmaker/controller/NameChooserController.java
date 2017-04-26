@@ -30,7 +30,8 @@ public class NameChooserController extends ControleDevint {
     private ButtonMenu menu;
 
     @Override
-    protected void init() {
+    public void init() {
+        mapTouchToActions();
         menu = new ButtonMenu(Arrays.asList(cancel, save), scene.getSIVox(),
                 Arrays.asList((x) -> exit(), (x) -> save()), 1);
     }

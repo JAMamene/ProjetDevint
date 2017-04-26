@@ -115,6 +115,7 @@ public class MainController extends ControleDevint {
             SceneDevint scene = new SceneDevint(loader.load());
             ItemChooserController controller = loader.getController();
             controller.setScene(scene);
+            controller.init();
             controller.load(ConfigurationType.SEQUENCE, this::loadJSON, "Choisissez une séquence");
             Stage stage = new Stage();
             stage.setScene(scene);
@@ -145,6 +146,7 @@ public class MainController extends ControleDevint {
             SceneDevint scene = new SceneDevint(loader.load());
             NameChooserController controller = loader.getController();
             controller.setScene(scene);
+            controller.init();
             controller.load(sequence.toJSON(), ConfigurationType.SEQUENCE, "Entrez un nom pour la séquence actuelle");
             Stage stage = new Stage();
             stage.setScene(scene);

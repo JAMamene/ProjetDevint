@@ -31,15 +31,17 @@ public class ItemChooserController extends ControleDevint {
     private ButtonMenu menu;
 
     @Override
-    protected void init() {}
+    protected void init() {
+        mapTouchToActions();
+    }
 
     @Override
     protected void reset() {}
 
     @Override
     public void mapTouchToActions() {
-        scene.mapKeyPressedToConsumer(KeyCode.UP, (x) -> menu.moveSelection(-1));
-        scene.mapKeyPressedToConsumer(KeyCode.DOWN, (x) -> menu.moveSelection(1));
+        scene.mapKeyPressedToConsumer(KeyCode.UP, (x) -> menu.moveSelection(1));
+        scene.mapKeyPressedToConsumer(KeyCode.DOWN, (x) -> menu.moveSelection(-1));
         scene.mapKeyPressedToConsumer(KeyCode.ENTER, (x) -> menu.confirm());
     }
 
