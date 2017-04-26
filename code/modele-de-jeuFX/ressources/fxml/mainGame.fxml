@@ -13,6 +13,12 @@
          <padding>
             <Insets left="50.0" right="50.0" />
          </padding></HBox>
-        <Button layoutX="89.0" layoutY="859.0" mnemonicParsing="false" prefHeight="93.0" prefWidth="394.0" text="ESCAPE" />
+      <HBox alignment="CENTER" layoutX="-5.0" layoutY="859.0" minWidth="-Infinity" prefHeight="135.0" prefWidth="1920.0" spacing="30.0">
+         <children>
+              <Button fx:id="quit" mnemonicParsing="false" prefHeight="93.0" prefWidth="400.0" styleClass="unselectedbutton" text="QUITTER" textAlignment="CENTER" />
+            <Button fx:id="load" mnemonicParsing="false" prefHeight="93.0" prefWidth="600.0" styleClass="selectedbutton" text="CHARGER MUSIQUE" textAlignment="CENTER" wrapText="true" />
+            <Button fx:id="switchSet" mnemonicParsing="false" prefHeight="93.0" prefWidth="800.0" styleClass="unselectedbutton" text="CHANGER INSTRUMENTS" textAlignment="CENTER" wrapText="true" />
+         </children>
+      </HBox>
     </children>
 </AnchorPane>

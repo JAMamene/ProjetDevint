@@ -27,6 +27,7 @@
     -fx-background-radius: 0,20;
     -fx-padding: 10,10,10,10;
     -fx-text-fill: #4D004D;
+    -fx-alignment: center;
 }
 
 .label{	 
@@ -37,6 +38,7 @@
     -fx-background-radius: 0,20;
     -fx-padding: 10,10,10,10;
     -fx-text-fill: #ffe6ff;
+    -fx-alignment: center;
 }
 
 .selectedbutton{ 
@@ -47,6 +49,7 @@
     -fx-background-radius: 0,20;
     -fx-padding: 10,10,10,10;
     -fx-text-fill: #ffe6ff;
+    -fx-alignment: center;
 }
 
 .unselectedbutton{
@@ -57,6 +60,7 @@
     -fx-background-radius: 0,20; /* boutons arrondis */
     -fx-padding: 10,10,10,10; /* espaces réservés autour du texte */
     -fx-text-fill:#4D004D;
+    -fx-alignment: center;
 }
 
 

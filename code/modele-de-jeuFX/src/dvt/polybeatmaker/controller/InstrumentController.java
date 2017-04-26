@@ -22,7 +22,7 @@ public class InstrumentController {
 
     private static String BORDER_PROPERTY = "-fx-border-width: 10;" +
             "-fx-border-color: ";
-    private static String HIGHLIGHT_COLOR = MainController.WHITE;
+    private static String HIGHLIGHT_COLOR = MainController.DEFAULT_BORDER;
 
 
     @FXML private VBox box1;

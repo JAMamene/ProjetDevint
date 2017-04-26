@@ -15,7 +15,7 @@ import java.io.File;
  */
 public final class Preferences {
 	// gestion des couleurs
-	private final static String[] styleColorSheet ={"colorStyle1.css","colorStyle3.css","colorStyle2.css","colorStyle4.css","colorStyle5.css","colorStyle6.css"} ;
+	private final static String[] styleColorSheet ={"colorStyle1.css","colorStyle2.css","colorStyle3.css","colorStyle4.css","colorStyle5.css","colorStyle6.css"} ;
 	// gestion des fontes
 	private final static String[] styleFontSheet ={"fontStyleMoyen.css","fontStyleGrand.css","fontStylePetit.css"} ;
 	private static String STYLES_PATH="../ressources/styles/";
