@@ -82,13 +82,11 @@ public class MainController extends ControleDevint {
 
     }
 
-    public void updateProgressBar(boolean reset, double progress) {
-        if (reset) {
-            progressBar.setProgress(0);
-        }
+    public void updateProgressBar(int duration) {
+        progressBar.setProgress(0);
         Timeline timeline = new Timeline();
-        KeyValue keyValue = new KeyValue(progressBar.progressProperty(), progress);
-        KeyFrame keyFrame = new KeyFrame(new Duration(1000), keyValue);
+        KeyValue keyValue = new KeyValue(progressBar.progressProperty(), 1);
+        KeyFrame keyFrame = new KeyFrame(new Duration(duration), keyValue);
         timeline.getKeyFrames().add(keyFrame);
         timeline.play();
     }

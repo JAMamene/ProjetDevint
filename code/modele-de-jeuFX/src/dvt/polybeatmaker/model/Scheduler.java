@@ -42,22 +42,14 @@ public class Scheduler extends Timer {
         started = true;
         schedule(
                 new TimerTask() {
-                    int i = 0;
-
                     @Override
                     public void run() {
-                        double progress = i % (LOOPTIME) / (double) (LOOPTIME - 1);
-                        if (i % LOOPTIME == 0) {
-                            for (Sound s : sounds) {
-                                s.play();
-                            }
-                            controller.updateProgressBar(true, progress);
-                        } else {
-                            controller.updateProgressBar(false, progress);
+                        for (Sound s : sounds) {
+                            s.play();
                         }
-                        i++;
+                        controller.updateProgressBar(LOOPTIME*1000);
                     }
-                }, 0, 1000);
+                }, 0, LOOPTIME * 1000);
     }
 
     public boolean isStarted() {
