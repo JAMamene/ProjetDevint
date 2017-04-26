@@ -124,7 +124,7 @@ public class InstrumentController {
             toggleSound(activatedButton);
         }
         if (id != Sequence.INACTIVE) {
-            toggleSound(buttons.get(id));
+            toggleSound(buttons.get(id -1));
         }
     }
 
