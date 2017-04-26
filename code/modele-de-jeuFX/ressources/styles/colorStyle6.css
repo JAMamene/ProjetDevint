@@ -59,4 +59,16 @@
     -fx-text-fill:#4d3319;
 }
 
+.progress-bar > .bar {
+    -fx-background-color: #f2e6d9;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+.progress-bar > .track {
+    -fx-background-color: #4d3319;
+    -fx-background-insets:  0;
+     -fx-background-radius: 0;
+}
+
 

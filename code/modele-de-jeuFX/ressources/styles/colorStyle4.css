@@ -60,3 +60,16 @@
 }
 
 
+.progress-bar > .bar {
+    -fx-background-color: #ffe6ff;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+.progress-bar > .track {
+    -fx-background-color: #4d004d;
+    -fx-background-insets:  0;
+     -fx-background-radius: 0;
+}
+
+
