@@ -10,7 +10,7 @@ import java.util.TimerTask;
 
 public class Scheduler extends Timer {
 
-    private static final int LOOPTIME = 6;
+    private static final int LOOPTIME = 9;
 
     private MainController controller;
 
@@ -51,9 +51,9 @@ public class Scheduler extends Timer {
                             for (Sound s : sounds) {
                                 s.play();
                             }
-                            controller.updateProgressBar(progress);
+                            controller.updateProgressBar(true, progress);
                         } else {
-                            controller.updateProgressBar(progress);
+                            controller.updateProgressBar(false, progress);
                         }
                         i++;
                     }
