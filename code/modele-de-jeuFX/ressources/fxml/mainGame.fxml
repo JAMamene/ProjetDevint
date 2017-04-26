@@ -17,7 +17,7 @@
          <children>
               <Button fx:id="quit" mnemonicParsing="false" prefHeight="93.0" prefWidth="400.0" styleClass="unselectedbutton" text="QUITTER" textAlignment="CENTER" />
             <Button fx:id="load" mnemonicParsing="false" prefHeight="93.0" prefWidth="600.0" styleClass="selectedbutton" text="CHARGER MUSIQUE" textAlignment="CENTER" wrapText="true" />
-            <Button fx:id="switchSet" mnemonicParsing="false" prefHeight="93.0" prefWidth="800.0" styleClass="unselectedbutton" text="CHANGER INSTRUMENTS" textAlignment="CENTER" wrapText="true" />
+            <Button fx:id="save" mnemonicParsing="false" prefHeight="93.0" prefWidth="800.0" styleClass="unselectedbutton" text="SAUVEGARDER" textAlignment="CENTER" wrapText="true" />
          </children>
       </HBox>
     </children>

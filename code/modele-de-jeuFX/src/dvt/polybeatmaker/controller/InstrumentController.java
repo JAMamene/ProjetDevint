@@ -2,6 +2,7 @@ package dvt.polybeatmaker.controller;
 
 import dvt.polybeatmaker.model.Instrument;
 import dvt.polybeatmaker.model.PolybeatModel;
+import dvt.polybeatmaker.model.Sequence;
 import dvt.polybeatmaker.model.Sound;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -12,8 +13,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaException;
 
 import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Controller for one instrument.
@@ -24,13 +23,11 @@ public class InstrumentController {
             "-fx-border-color: ";
     private static String HIGHLIGHT_COLOR = MainController.DEFAULT_BORDER;
 
-
     @FXML private VBox box1;
     @FXML private VBox box2;
     @FXML private ImageView picture;
 
     private Instrument instrument;
-    private List<ToggleButton> buttons;
     private PolybeatModel model;
 
     private Sound activated;
@@ -38,6 +35,10 @@ public class InstrumentController {
 
     public static void setHighlightColor(String color) {
         HIGHLIGHT_COLOR = color;
+    }
+
+    public Instrument getInstrument() {
+        return instrument;
     }
 
     public void setInstrument(Instrument instrument) {
@@ -49,24 +50,24 @@ public class InstrumentController {
     }
 
     public void init() throws MalformedURLException {
-        buttons = new ArrayList<>();
         for (Node c : box1.getChildren()) {
-            buttons.add((ToggleButton) c);
+            initButton((ToggleButton) c);
         }
         for (Node c : box2.getChildren()) {
-            buttons.add((ToggleButton) c);
-        }
-        for (ToggleButton b : buttons) {
-            b.setStyle(instrument.getStyle());
-            b.setOnMouseClicked(event -> {
-                swapBorder(b);
-                if (activated != null) {
-                    model.removeSound(activated);
-                }
-                toggleSound(b);
-            });
+            initButton((ToggleButton) c);
         }
         picture.setImage(new Image(instrument.getPicURL()));
+    }
+
+    public void initButton(ToggleButton b) {
+        b.setStyle(instrument.getStyle());
+        b.setOnMouseClicked(event -> {
+            swapBorder(b);
+            if (activated != null) {
+                model.removeSound(activated);
+            }
+            toggleSound(b);
+        });
     }
 
     public void swapBorder(ToggleButton b) {
@@ -103,6 +104,14 @@ public class InstrumentController {
     public void updateHighlight() {
         if (activatedButton != null) {
             activatedButton.setStyle(instrument.getStyle() + BORDER_PROPERTY + HIGHLIGHT_COLOR);
+        }
+    }
+
+    public int getActive(){
+        if (activatedButton == null) {
+            return Sequence.INACTIVE;
+        } else {
+            return Integer.parseInt(activatedButton.getId());
         }
     }
 

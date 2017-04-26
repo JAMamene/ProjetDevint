@@ -22,6 +22,10 @@ public enum Instrument {
         this.color = color;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String getPicURL() throws MalformedURLException {
         return new File("../ressources/images/" + name + ".png").toURI().toURL().toString();
     }

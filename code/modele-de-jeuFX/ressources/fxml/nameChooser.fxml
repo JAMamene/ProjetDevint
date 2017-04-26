@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" styleClass="-fx-align: center;" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="dvt.polybeatmaker.controller.NameChooserController">
+   <children>
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" spacing="50.0">
+         <children>
+            <Label fx:id="mainLabel" alignment="CENTER" minHeight="100.0" prefWidth="600.0" />
+            <TextField fx:id="nameField" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="800.0" />
+            <HBox alignment="CENTER" prefHeight="150.0" prefWidth="200.0" spacing="50.0">
+               <children>
+                  <Button fx:id="cancel" alignment="CENTER" mnemonicParsing="false" prefHeight="150.0" prefWidth="300.0" styleClass="unselectedbutton" text="Annuler" />
+                  <Button fx:id="save" alignment="CENTER" mnemonicParsing="false" prefHeight="150.0" prefWidth="400.0" styleClass="selectedbutton" text="Sauvegarder" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

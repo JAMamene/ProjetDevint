@@ -1,8 +1,10 @@
 package dvt.polybeatmaker.controller;
 
 import dvt.jeu.simple.ControleDevint;
+import dvt.polybeatmaker.model.ConfigurationType;
 import dvt.polybeatmaker.model.Instrument;
 import dvt.polybeatmaker.model.PolybeatModel;
+import dvt.polybeatmaker.model.Sequence;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -13,6 +15,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
@@ -30,7 +33,10 @@ import static dvt.devint.ConstantesDevint.SYNTHESE_MAXIMALE;
 public class MainController extends ControleDevint {
 
     public static String DEFAULT_BORDER = "#FFFFFF;";
-    private static String[] BORDER_COLOR = new String[]{"#FFFFFF;", "#e6e6ff;","#4d004d;","#ffe6ff;","#4d3319;", "#f2e6d9;"};
+    public static String CSS_SELECTED = "selectedbutton";
+    public static String CSS_UNSELECTED = "unselectedbutton";
+
+    private static String[] BORDER_COLOR = new String[]{"#FFFFFF;", "#e6e6ff;", "#4d004d;", "#ffe6ff;", "#4d3319;", "#f2e6d9;"};
 
     private int currentCSS = 0;
     private PolybeatModel model;
@@ -43,7 +49,7 @@ public class MainController extends ControleDevint {
     @FXML private ProgressBar progressBar;
     @FXML private HBox mainBox;
     @FXML private Button load;
-    @FXML private Button switchSet;
+    @FXML private Button save;
     @FXML private Button quit;
 
     public void setPolybeatModel(PolybeatModel model) {
@@ -63,8 +69,8 @@ public class MainController extends ControleDevint {
                 controller.setModel(model);
                 model.getScheduler().setController(this);
                 controller.init();
-                buttons = new Button[]{quit, load, switchSet};
-                functions = Arrays.asList((x) -> quit(), (x) -> load(), (x) -> switchSet());
+                buttons = new Button[]{quit, load, save};
+                functions = Arrays.asList((x) -> quit(), (x) -> load(), (x) -> save());
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -136,9 +142,9 @@ public class MainController extends ControleDevint {
         for (int i = 0; i < buttons.length; i++) {
             buttons[i].getStyleClass().clear();
             if (i == buttonIndex) {
-                buttons[i].getStyleClass().add("selectedbutton");
+                buttons[i].getStyleClass().add(CSS_SELECTED);
             } else {
-                buttons[i].getStyleClass().add("unselectedbutton");
+                buttons[i].getStyleClass().add(CSS_UNSELECTED);
             }
         }
     }
@@ -148,15 +154,32 @@ public class MainController extends ControleDevint {
     }
 
     private void quit() {
-
+        Stage stage = (Stage) load.getScene().getWindow();
+        stage.close();
     }
 
     private void load() {
 
     }
 
-    private void switchSet() {
-
+    private void save() {
+        List<Instrument> currentInstruments = new ArrayList<>();
+        List<Integer> currentActive = new ArrayList<>();
+        for (InstrumentController controller : childrenControllers) {
+            currentInstruments.add(controller.getInstrument());
+            currentActive.add(controller.getActive());
+        }
+        Sequence sequence = new Sequence(currentInstruments, currentActive);
+        try {
+            FXMLLoader loader = new FXMLLoader(new File("../ressources/fxml/nameChooser.fxml").toURI().toURL());
+            Stage stage = new Stage();
+            stage.setScene(loader.load());
+            NameChooserController controller = loader.getController();
+            controller.load(sequence.toJSON(), ConfigurationType.SEQUENCE, "Entrez un nom pour la séquence actuelle");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
