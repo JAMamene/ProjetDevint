@@ -13,6 +13,6 @@
          <padding>
             <Insets left="50.0" right="50.0" />
          </padding></HBox>
-        <Button layoutX="89.0" layoutY="859.0" mnemonicParsing="false" prefHeight="93.0" prefWidth="344.0" text="ESCAPE" />
+        <Button layoutX="89.0" layoutY="859.0" mnemonicParsing="false" prefHeight="93.0" prefWidth="394.0" text="ESCAPE" />
     </children>
 </AnchorPane>

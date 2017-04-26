@@ -35,7 +35,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <font>
-                        <Font size="40.0" />
+                        <Font name="System Bold" size="40.0" />
                      </font>
                   </ToggleButton>
                </children>
@@ -58,7 +58,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <font>
-                        <Font size="40.0" />
+                        <Font name="System Bold" size="40.0" />
                      </font>
                   </ToggleButton>
                </children>
