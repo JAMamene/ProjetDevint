@@ -53,8 +53,8 @@ public class NameChooserController extends ControleDevint {
     }
 
     @FXML
-    private void exit(){
-        Stage stage =  (Stage) getScene().getWindow();
+    private void exit() {
+        Stage stage = (Stage) getScene().getWindow();
         stage.close();
     }
 
@@ -64,7 +64,7 @@ public class NameChooserController extends ControleDevint {
             return;
         }
         for (char c : nameField.getText().toCharArray()) {
-            if (!((c > 'a' && c < 'z') || (c > 'A' && c < 'Z') || c == '-')) {
+            if (!((c > 'a' && c < 'z') || (c > 'A' && c < 'Z') || c == '-' || c == ' ')) {
                 return;
             }
         }
