@@ -77,7 +77,6 @@ public class InstrumentController {
                 model.removeSound(activated);
             }
             if (activatedButton == b) {
-                model.removeSound(activated);
                 activatedButton = null;
             } else {
                 if (activatedButton != null) {
