@@ -6,19 +6,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="dvt.polybeatmaker.controller.MainController">
+<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dvt.polybeatmaker.controller.MainController">
     <children>
-      <ProgressBar fx:id="progressBar" prefHeight="55.0" prefWidth="1920.0" progress="0.0" />
+        <ProgressBar fx:id="progressBar" prefHeight="55.0" prefWidth="1920.0" progress="0.0" />
         <HBox fx:id="mainBox" alignment="CENTER" layoutX="74.0" layoutY="95.0" prefHeight="660.0" prefWidth="1734.0" scaleX="1.1" scaleY="1.15" spacing="50.0" AnchorPane.topAnchor="125.0">
-         <padding>
-            <Insets left="50.0" right="50.0" />
-         </padding></HBox>
-      <HBox alignment="CENTER" layoutX="-5.0" layoutY="859.0" minWidth="-Infinity" prefHeight="135.0" prefWidth="1920.0" spacing="30.0">
-         <children>
-              <Button fx:id="quit" mnemonicParsing="false" prefHeight="93.0" prefWidth="400.0" styleClass="unselectedbutton" text="QUITTER" textAlignment="CENTER" />
-            <Button fx:id="load" mnemonicParsing="false" prefHeight="93.0" prefWidth="600.0" styleClass="selectedbutton" text="CHARGER MUSIQUE" textAlignment="CENTER" wrapText="true" />
-            <Button fx:id="save" mnemonicParsing="false" prefHeight="93.0" prefWidth="800.0" styleClass="unselectedbutton" text="SAUVEGARDER" textAlignment="CENTER" wrapText="true" />
-         </children>
-      </HBox>
+            <padding>
+                <Insets left="50.0" right="50.0" />
+            </padding>
+        </HBox>
+        <HBox alignment="CENTER" layoutX="-5.0" layoutY="859.0" minWidth="-Infinity" prefHeight="135.0" prefWidth="1920.0" spacing="30.0">
+            <children>
+                <Button fx:id="quit" mnemonicParsing="false" onAction="#quit" prefHeight="93.0" prefWidth="400.0" styleClass="unselectedbutton" text="QUITTER" textAlignment="CENTER" />
+                <Button fx:id="load" mnemonicParsing="false" onAction="#load" prefHeight="93.0" prefWidth="600.0" styleClass="selectedbutton" text="CHARGER MUSIQUE" textAlignment="CENTER" wrapText="true" />
+                <Button fx:id="save" mnemonicParsing="false" onAction="#save" prefHeight="93.0" prefWidth="800.0" styleClass="unselectedbutton" text="SAUVEGARDER" textAlignment="CENTER" wrapText="true" />
+            </children>
+        </HBox>
     </children>
 </AnchorPane>

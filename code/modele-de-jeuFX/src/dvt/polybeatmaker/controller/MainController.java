@@ -1,5 +1,6 @@
 package dvt.polybeatmaker.controller;
 
+import dvt.devint.SceneDevint;
 import dvt.jeu.simple.ControleDevint;
 import dvt.polybeatmaker.model.ConfigurationType;
 import dvt.polybeatmaker.model.Instrument;
@@ -17,6 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,18 +35,13 @@ import static dvt.devint.ConstantesDevint.SYNTHESE_MAXIMALE;
 public class MainController extends ControleDevint {
 
     public static String DEFAULT_BORDER = "#FFFFFF;";
-    public static String CSS_SELECTED = "selectedbutton";
-    public static String CSS_UNSELECTED = "unselectedbutton";
 
     private static String[] BORDER_COLOR = new String[]{"#FFFFFF;", "#e6e6ff;", "#4d004d;", "#ffe6ff;", "#4d3319;", "#f2e6d9;"};
 
     private int currentCSS = 0;
     private PolybeatModel model;
     private List<InstrumentController> childrenControllers;
-    private AnchorPane root;
-    private int buttonIndex = 1;
-    private Button[] buttons;
-    private List<Consumer<Void>> functions;
+    private ButtonMenu menu;
 
     @FXML private ProgressBar progressBar;
     @FXML private HBox mainBox;
@@ -69,8 +66,8 @@ public class MainController extends ControleDevint {
                 controller.setModel(model);
                 model.getScheduler().setController(this);
                 controller.init();
-                buttons = new Button[]{quit, load, save};
-                functions = Arrays.asList((x) -> quit(), (x) -> load(), (x) -> save());
+                menu = new ButtonMenu(Arrays.asList(quit, load, save), scene.getSIVox(), Arrays.asList(
+                        (x) -> quit(), (x) -> load(), (x) -> save()), 1);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -78,9 +75,7 @@ public class MainController extends ControleDevint {
     }
 
     @Override
-    protected void reset() {
-
-    }
+    protected void reset() {}
 
     public void updateProgressBar(int duration) {
         progressBar.setProgress(0);
@@ -94,72 +89,49 @@ public class MainController extends ControleDevint {
     @Override
     public void mapTouchToActions() {
         scene.mapKeyPressedToConsumer(KeyCode.F3, (x) -> swapBackgroundColor());
-        scene.mapKeyPressedToConsumer(KeyCode.LEFT, (x) -> left());
-        scene.mapKeyPressedToConsumer(KeyCode.RIGHT, (x) -> right());
-        scene.mapKeyPressedToConsumer(KeyCode.ENTER, (x) -> confirm());
+        scene.mapKeyPressedToConsumer(KeyCode.LEFT, (x) -> menu.moveSelection(-1));
+        scene.mapKeyPressedToConsumer(KeyCode.RIGHT, (x) -> menu.moveSelection(1));
+        scene.mapKeyPressedToConsumer(KeyCode.ENTER, (x) -> menu.confirm());
     }
 
     private void swapBackgroundColor() {
-        if (currentCSS == 5) {
-            currentCSS = 0;
-        } else {
-            currentCSS++;
-        }
+        currentCSS = Math.floorMod(currentCSS + 1, 6);
         InstrumentController.setHighlightColor(BORDER_COLOR[currentCSS]);
         for (InstrumentController controller : childrenControllers) {
             controller.updateHighlight();
         }
     }
 
-    private void left() {
-        if (buttonIndex == 0) {
-            buttonIndex = 2;
-        } else {
-            buttonIndex--;
-        }
-        playCurrent();
-        updateButtonStyles();
-    }
-
-    private void right() {
-        if (buttonIndex == 2) {
-            buttonIndex = 0;
-        } else {
-            buttonIndex++;
-        }
-        playCurrent();
-        updateButtonStyles();
-    }
-
-    private void playCurrent() {
-        scene.getSIVox().stop();
-        scene.getSIVox().playText(buttons[buttonIndex].getText(), SYNTHESE_MAXIMALE);
-    }
-
-    private void updateButtonStyles() {
-        for (int i = 0; i < buttons.length; i++) {
-            buttons[i].getStyleClass().clear();
-            if (i == buttonIndex) {
-                buttons[i].getStyleClass().add(CSS_SELECTED);
-            } else {
-                buttons[i].getStyleClass().add(CSS_UNSELECTED);
-            }
-        }
-    }
-
-    private void confirm() {
-        functions.get(buttonIndex).accept(null);
-    }
-
+    @FXML
     private void quit() {
         Stage stage = (Stage) load.getScene().getWindow();
         stage.close();
     }
 
+    @FXML
     private void load() {
-
+        try {
+            FXMLLoader loader = new FXMLLoader(new File("../ressources/fxml/itemChooser.fxml").toURI().toURL());
+            SceneDevint scene = new SceneDevint(loader.load());
+            ItemChooserController controller = loader.getController();
+            controller.setScene(scene);
+            controller.load(ConfigurationType.SEQUENCE, this::loadJSON, "Choisissez une séquence");
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    public void loadJSON(JSONObject json) {
+        Sequence sequence = new Sequence(json);
+        for (int i = 0; i < childrenControllers.size(); i++) {
+            childrenControllers.get(i).loadActive(sequence.getActivate(i));
+        }
+    }
+
+    @FXML
     private void save() {
         List<Instrument> currentInstruments = new ArrayList<>();
         List<Integer> currentActive = new ArrayList<>();
@@ -170,10 +142,12 @@ public class MainController extends ControleDevint {
         Sequence sequence = new Sequence(currentInstruments, currentActive);
         try {
             FXMLLoader loader = new FXMLLoader(new File("../ressources/fxml/nameChooser.fxml").toURI().toURL());
-            Stage stage = new Stage();
-            stage.setScene(loader.load());
+            SceneDevint scene = new SceneDevint(loader.load());
             NameChooserController controller = loader.getController();
+            controller.setScene(scene);
             controller.load(sequence.toJSON(), ConfigurationType.SEQUENCE, "Entrez un nom pour la séquence actuelle");
+            Stage stage = new Stage();
+            stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,8 +1,18 @@
 package dvt.polybeatmaker.model;
 
-/**
- * @author Guillaume Andre
- */
 public enum ConfigurationType {
-    COMPOSITION, SEQUENCE
+
+    COMPOSITION ("compositions/"),
+    SEQUENCE ("sequences/");
+
+    private String folder;
+
+    ConfigurationType(String folder) {
+        this.folder = folder;
+    }
+
+    public String getFolder(){
+        return folder;
+    }
+
 }

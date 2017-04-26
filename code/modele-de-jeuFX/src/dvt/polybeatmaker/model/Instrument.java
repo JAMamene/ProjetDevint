@@ -22,6 +22,15 @@ public enum Instrument {
         this.color = color;
     }
 
+    public static Instrument getInstrument(String name) {
+        for (Instrument instrument : Instrument.values()) {
+            if (name.equals(instrument.getName())) {
+                return instrument;
+            }
+        }
+        return null;
+    }
+
     public String getName() {
         return name;
     }

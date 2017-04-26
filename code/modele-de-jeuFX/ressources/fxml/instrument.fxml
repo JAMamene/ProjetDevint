@@ -8,66 +8,67 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="dvt.polybeatmaker.controller.InstrumentController">
-   <children>
-      <HBox alignment="CENTER" spacing="40.0">
-         <children>
-            <VBox fx:id="box1" alignment="CENTER" spacing="40.0">
-               <children>
-                  <ToggleButton fx:id="a1" ellipsisString="O" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="System Bold" size="40.0" />
-                     </font>
-                  </ToggleButton>
-                  <ToggleButton fx:id="a3" ellipsisString="O" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="System Bold" size="40.0" />
-                     </font>
-                  </ToggleButton>
-                  <ToggleButton fx:id="a5" ellipsisString="O" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="System Bold" size="40.0" />
-                     </font>
-                  </ToggleButton>
-               </children>
-            </VBox>
-            <VBox fx:id="box2" alignment="CENTER" spacing="40.0">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-               <children>
-                  <ToggleButton fx:id="a2" ellipsisString="O" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="System Bold" size="40.0" />
-                     </font>
-                  </ToggleButton>
-                  <ToggleButton fx:id="a4" ellipsisString="O" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="System Bold" size="40.0" />
-                     </font>
-                  </ToggleButton>
-               </children>
-            </VBox>
-         </children>
-         <VBox.margin>
-            <Insets bottom="60.0" />
-         </VBox.margin>
-      </HBox>
-      <ImageView fx:id="picture" fitHeight="240.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true" />
-   </children>
+<VBox xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.111"
+      fx:controller="dvt.polybeatmaker.controller.InstrumentController">
+    <children>
+        <HBox alignment="CENTER" spacing="40.0">
+            <children>
+                <VBox fx:id="box1" alignment="CENTER" spacing="40.0">
+                    <children>
+                        <ToggleButton fx:id="a1" ellipsisString="O" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                            <font>
+                                <Font name="System Bold" size="40.0"/>
+                            </font>
+                        </ToggleButton>
+                        <ToggleButton fx:id="a3" ellipsisString="O" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                            <font>
+                                <Font name="System Bold" size="40.0"/>
+                            </font>
+                        </ToggleButton>
+                        <ToggleButton fx:id="a5" ellipsisString="O" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                            <font>
+                                <Font name="System Bold" size="40.0"/>
+                            </font>
+                        </ToggleButton>
+                    </children>
+                </VBox>
+                <VBox fx:id="box2" alignment="CENTER" spacing="40.0">
+                    <HBox.margin>
+                        <Insets/>
+                    </HBox.margin>
+                    <children>
+                        <ToggleButton fx:id="a2" ellipsisString="O" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                            <font>
+                                <Font name="System Bold" size="40.0"/>
+                            </font>
+                        </ToggleButton>
+                        <ToggleButton fx:id="a4" ellipsisString="O" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0">
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                            <font>
+                                <Font name="System Bold" size="40.0"/>
+                            </font>
+                        </ToggleButton>
+                    </children>
+                </VBox>
+            </children>
+            <VBox.margin>
+                <Insets bottom="60.0"/>
+            </VBox.margin>
+        </HBox>
+        <ImageView fx:id="picture" fitHeight="240.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true"/>
+    </children>
 </VBox>

@@ -13,6 +13,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaException;
 
 import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Controller for one instrument.
@@ -32,6 +34,7 @@ public class InstrumentController {
 
     private Sound activated;
     private ToggleButton activatedButton;
+    private List<ToggleButton> buttons;
 
     public static void setHighlightColor(String color) {
         HIGHLIGHT_COLOR = color;
@@ -50,38 +53,29 @@ public class InstrumentController {
     }
 
     public void init() throws MalformedURLException {
+        buttons = new ArrayList<>();
         for (Node c : box1.getChildren()) {
-            initButton((ToggleButton) c);
+            initButton(c);
         }
         for (Node c : box2.getChildren()) {
-            initButton((ToggleButton) c);
+            initButton(c);
         }
         picture.setImage(new Image(instrument.getPicURL()));
     }
 
-    public void initButton(ToggleButton b) {
-        b.setStyle(instrument.getStyle());
-        b.setOnMouseClicked(event -> {
-            swapBorder(b);
-            if (activated != null) {
-                model.removeSound(activated);
-            }
-            toggleSound(b);
-        });
-    }
-
-    public void swapBorder(ToggleButton b) {
-        if (!b.isSelected()) {
-            b.setStyle(instrument.getStyle());
-            b.setText("");
-        } else {
-            b.setStyle(instrument.getStyle() + BORDER_PROPERTY + HIGHLIGHT_COLOR);
-            b.setText("O");
-        }
+    public void initButton(Node c) {
+        ToggleButton t = (ToggleButton) c;
+        buttons.add(t);
+        t.setStyle(instrument.getStyle());
+        t.setOnMouseClicked(event -> toggleSound(t));
     }
 
     public void toggleSound(ToggleButton b) {
+        swapBorder(b);
         try {
+            if (activated != null) {
+                model.removeSound(activated);
+            }
             if (activatedButton == b) {
                 model.removeSound(activated);
                 activatedButton = null;
@@ -101,19 +95,37 @@ public class InstrumentController {
         }
     }
 
+    private void swapBorder(ToggleButton b) {
+        if (!b.isSelected()) {
+            b.setStyle(instrument.getStyle());
+            b.setText("");
+        } else {
+            b.setStyle(instrument.getStyle() + BORDER_PROPERTY + HIGHLIGHT_COLOR);
+            b.setText("O");
+        }
+    }
+
     public void updateHighlight() {
         if (activatedButton != null) {
             activatedButton.setStyle(instrument.getStyle() + BORDER_PROPERTY + HIGHLIGHT_COLOR);
         }
     }
 
-    public int getActive(){
+    public int getActive() {
         if (activatedButton == null) {
             return Sequence.INACTIVE;
         } else {
-            return Integer.parseInt(activatedButton.getId());
+            return Integer.parseInt(activatedButton.getId().substring(1));
         }
     }
 
+    public void loadActive(int id) {
+        if (activatedButton != null) {
+            toggleSound(activatedButton);
+        }
+        if (id != Sequence.INACTIVE) {
+            toggleSound(buttons.get(id));
+        }
+    }
 
 }
