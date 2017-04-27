@@ -13,7 +13,7 @@ public class Scheduler extends Timer {
 
     private boolean started;
 
-    private List<Sound> sounds;
+    private final List<Sound> sounds;
 
     public Scheduler() {
         super();

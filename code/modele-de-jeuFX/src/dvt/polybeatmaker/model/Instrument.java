@@ -3,9 +3,6 @@ package dvt.polybeatmaker.model;
 import java.io.File;
 import java.net.MalformedURLException;
 
-/**
- * Created by Meriveri on 05/04/2017.
- */
 public enum Instrument {
 
     PIANO("piano", "#a48ef2"),
