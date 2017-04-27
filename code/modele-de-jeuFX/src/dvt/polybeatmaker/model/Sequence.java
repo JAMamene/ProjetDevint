@@ -21,25 +21,23 @@ public class Sequence {
         this.activatedSounds = activatedSounds;
     }
 
+    public Sequence(JSONObject json) {
+        instruments = new ArrayList<>();
+        activatedSounds = new ArrayList<>();
+        for (Object instrument : json.getJSONArray(INSTRUMENT_KEY)) {
+            instruments.add(Instrument.getInstrument(instrument.toString()));
+        }
+        for (Object active : json.getJSONArray(ACTIVATED_KEY)) {
+            activatedSounds.add((Integer) active);
+        }
+    }
+
     public int getActivate(int id) {
         return activatedSounds.get(id);
     }
 
     public Instrument getInstrument(int id) {
         return instruments.get(id);
-    }
-
-    public Sequence(JSONObject json) {
-        instruments = new ArrayList<>();
-        activatedSounds = new ArrayList<>();
-        JSONArray jsonInstrument = json.getJSONArray(INSTRUMENT_KEY);
-        for (int i = 0; i < jsonInstrument.length(); i++) {
-            instruments.add(Instrument.getInstrument(jsonInstrument.getString(i)));
-        }
-        JSONArray activatedArray = json.getJSONArray(ACTIVATED_KEY);
-        for (int i = 0; i < activatedArray.length(); i++) {
-            activatedSounds.add(activatedArray.getInt(i));
-        }
     }
 
     public JSONObject toJSON() {
