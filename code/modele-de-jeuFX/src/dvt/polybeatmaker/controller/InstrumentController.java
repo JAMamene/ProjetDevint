@@ -7,6 +7,7 @@ import dvt.polybeatmaker.model.Sound;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -31,6 +32,7 @@ public class InstrumentController {
     private Sound activated;
     private ToggleButton activatedButton;
     private List<ToggleButton> buttons;
+    private ToggleGroup group;
 
     public Instrument getInstrument() {
         return instrument;
@@ -45,6 +47,7 @@ public class InstrumentController {
     }
 
     public void init() throws MalformedURLException {
+        this.group = new ToggleGroup();
         buttons = new ArrayList<>();
         for (Node c : box1.getChildren()) {
             initButton(c);
@@ -60,6 +63,7 @@ public class InstrumentController {
         buttons.add(t);
         t.setStyle(instrument.getStyle());
         t.setOnMouseClicked(event -> toggleSound(t));
+        t.setToggleGroup(group);
     }
 
     public void toggleSound(ToggleButton b) {
@@ -73,7 +77,6 @@ public class InstrumentController {
             } else {
                 if (activatedButton != null) {
                     activatedButton.setText("");
-                    activatedButton.setSelected(false);
                 }
                 activated = instrument.getSound(Integer.parseInt(b.getId().substring(1)));
                 model.addSound(activated);
