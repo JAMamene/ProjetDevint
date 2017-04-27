@@ -49,13 +49,19 @@ public class ItemChooserController extends ControleDevint {
         this.onSelect = onSelect;
         this.path = "../ressources/recordings/" + type.getFolder();
         mainLabel.setText(mainText);
-        File[] folderContent = new File(path).listFiles();
+        File directory = new File(path);
+        if (!directory.exists()) {
+             if (!directory.mkdir()) {
+                 mainLabel.setText("Erreur dossier sauvegarde");
+             }
+        }
+        File[] folderContent = directory.listFiles();
         List<Button> buttons = new ArrayList<>();
         buttons.add(quit);
         if (folderContent != null) {
             for (File file : folderContent) {
                 Button button = new Button(removeJSON(file.getName()));
-                button.setPrefSize(1400, 100);
+                button.setPrefSize(1700, 100);
                 button.setOnAction((x) -> choose(button));
                 itemBox.getChildren().add(button);
                 buttons.add(0, button);
@@ -64,18 +70,8 @@ public class ItemChooserController extends ControleDevint {
         this.menu = new ButtonMenu(buttons, scene.getSIVox(), Collections.singletonList((x) -> select()), 0);
     }
 
-    @FXML
-    private void exit() {
-        Stage stage = (Stage) getScene().getWindow();
-        stage.close();
-    }
-
     private String removeJSON(String original) {
         return original.substring(0, original.length() - 5);
-    }
-
-    private void select() {
-        choose(menu.getCurrentSelection());
     }
 
     private void choose(Button current) {
@@ -89,6 +85,16 @@ public class ItemChooserController extends ControleDevint {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void select() {
+        choose(menu.getCurrentSelection());
+    }
+
+    @FXML
+    private void exit() {
+        Stage stage = (Stage) getScene().getWindow();
+        stage.close();
     }
 
 }
