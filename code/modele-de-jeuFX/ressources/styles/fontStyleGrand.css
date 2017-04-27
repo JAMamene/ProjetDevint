@@ -1,6 +1,6 @@
 /* préférences de fontes pour écrire grand */
 
-.selectedbutton, .unselectedbutton, .button, .label, .textfield{
+.selectedbutton, .unselectedbutton, .button, .label, .text-field{
     -fx-font-size: 80px;
     -fx-font-family: "Arial";
     -fx-font-weight: bold;

@@ -30,7 +30,7 @@
     -fx-alignment: center;
 }
 
-.label{	 
+.label, .text-field{
 	 -fx-background-color: 
   		#f2e6d9,
         #4d3319; 
