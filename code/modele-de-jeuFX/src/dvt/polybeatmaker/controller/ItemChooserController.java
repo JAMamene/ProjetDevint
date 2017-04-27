@@ -53,7 +53,6 @@ public class ItemChooserController extends ControleDevint {
         List<Button> buttons = new ArrayList<>();
         buttons.add(quit);
         if (folderContent != null) {
-            itemBox.getChildren().remove(1);
             for (File file : folderContent) {
                 Button button = new Button(removeJSON(file.getName()));
                 button.setPrefSize(1400, 100);
