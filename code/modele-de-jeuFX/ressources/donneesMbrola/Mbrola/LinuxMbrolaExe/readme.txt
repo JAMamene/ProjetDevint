@@ -228,7 +228,7 @@ to get some help on how to use the software:
 > -i    = display the database information if any
 > -e    = IGNORE fatal errors on unkown diphone
 > -c CC = set COMMENT char (escape sequence in pho files)
-> -F FC = set FLUSH command name
+> -F FC = set FLUSH command choiceText
 > -v VR = VOLUME ratio, float ratio applied to ouput samples
 > -f FR = FREQ ratio, float ratio applied to pitch points
 > -t TR = TIME ratio, float ratio applied to phone durations
@@ -419,7 +419,7 @@ On modern Unix systems such as Solaris or HPUX or Linux
 
 mbrola fr1/fr1 TEST/bonjour.pho -.au | audioplay
 
-where  audioplay is your audio  file player (*  the name vary with the
+where  audioplay is your audio  file player (*  the choiceText vary with the
 platform, e.g. splayer for HPUX *)
 
 If  your audioplayer  has problems with sun .AU  files, try  with .raw
@@ -456,7 +456,7 @@ following command to your system startup procedure:
 
 $ DEFINE/SYSTEM/EXEC MBROLA_DIR disk:[dir]
 
-where "disk:[dir]"  is the name  of the directory  you created for the
+where "disk:[dir]"  is the choiceText  of the directory  you created for the
 MBROLA_DIR files.  You could also  add  the following command to  your
 system login command procedure:
 
@@ -490,7 +490,7 @@ R 150 50 91
 _ 91
 
 This shows the format of the input data  required by MBROLA. Each line
-contains  a phoneme name, a duration  (in ms),  and a series (possibly
+contains  a phoneme choiceText, a duration  (in ms),  and a series (possibly
 none)  of pitch  targets  composed of  two   float numbers each  : the
 position  of  the  pitch target   within   the phoneme  (in  %  of its
 total duration), and the pitch value (in Hz) at this position.
@@ -733,12 +733,12 @@ Then let's greet  our  pioneer database  providers:
      Alejandro Barbosa  (MX1),
 	  Aggelos Bletsas    (GR1), 
 	  Marian Boldea		(RO1), 
-	  Gösta Bruce			(SW1), 
+	  Gï¿½sta Bruce			(SW1), 
 	  Alistair Conkie	   (EN1 ES1), 
 	  Denis Costa			(BR1), 
 	  Arthur Dirksen		(NL1 NL2), 
 	  Thierry Dutoit		(FR1), 
-	  Céline Egéa			(FR2), 
+	  Cï¿½line Egï¿½a			(FR2), 
 	  Fred Englert		   (DE1 DE2), 
 	  Nikolaj Lazic		(CR1),
 	  Mike Macon         (US3 MX1),

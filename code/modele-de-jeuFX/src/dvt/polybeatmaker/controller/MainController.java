@@ -30,7 +30,6 @@ import java.util.List;
  */
 public class MainController extends ControleDevint {
 
-
     private PolybeatModel model;
     private List<InstrumentController> childrenControllers;
     private ButtonMenu menu;
@@ -45,19 +44,20 @@ public class MainController extends ControleDevint {
         this.model = model;
     }
 
+    /**
+     * Initializes the instruments controls and the menu.
+     */
     @Override
     protected void init() {
         try {
             childrenControllers = new ArrayList<>();
+            model.getScheduler().setController(this);
             for (Instrument instrument : Instrument.values()) {
                 FXMLLoader loader = new FXMLLoader(new File("../ressources/fxml/instrument.fxml").toURI().toURL());
                 mainBox.getChildren().add(loader.load());
                 InstrumentController controller = loader.getController();
                 childrenControllers.add(controller);
-                controller.setInstrument(instrument);
-                controller.setModel(model);
-                model.getScheduler().setController(this);
-                controller.init();
+                controller.init(instrument, model);
                 menu = new ButtonMenu(Arrays.asList(quit, load, save), scene.getSIVox(), Arrays.asList(
                         (x) -> quit(), (x) -> load(), (x) -> save()), 1);
             }
@@ -69,15 +69,6 @@ public class MainController extends ControleDevint {
     @Override
     protected void reset() {}
 
-    public void updateProgressBar(int duration) {
-        progressBar.setProgress(0);
-        Timeline timeline = new Timeline();
-        KeyValue keyValue = new KeyValue(progressBar.progressProperty(), 1);
-        KeyFrame keyFrame = new KeyFrame(new Duration(duration), keyValue);
-        timeline.getKeyFrames().add(keyFrame);
-        timeline.play();
-    }
-
     @Override
     public void mapTouchToActions() {
         scene.mapKeyPressedToConsumer(KeyCode.LEFT, (x) -> menu.moveSelection(-1));
@@ -85,12 +76,18 @@ public class MainController extends ControleDevint {
         scene.mapKeyPressedToConsumer(KeyCode.ENTER, (x) -> menu.confirm());
     }
 
+    /**
+     * Closes the window.
+     */
     @FXML
     private void quit() {
         Stage stage = (Stage) load.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Opens up a new window to select a sequence to initialize.
+     */
     @FXML
     private void load() {
         try {
@@ -99,7 +96,7 @@ public class MainController extends ControleDevint {
             ItemChooserController controller = loader.getController();
             controller.setScene(scene);
             controller.init();
-            controller.load(ConfigurationType.SEQUENCE, this::loadJSON, "Choisissez une séquence");
+            controller.load(ConfigurationType.SEQUENCE, this::loadJSON);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
@@ -108,13 +105,9 @@ public class MainController extends ControleDevint {
         }
     }
 
-    public void loadJSON(JSONObject json) {
-        Sequence sequence = new Sequence(json);
-        for (int i = 0; i < childrenControllers.size(); i++) {
-            childrenControllers.get(i).loadActive(sequence.getActivate(i));
-        }
-    }
-
+    /**
+     * Opens up a new window to save the current sequence.
+     */
     @FXML
     private void save() {
         List<Instrument> currentInstruments = new ArrayList<>();
@@ -130,12 +123,37 @@ public class MainController extends ControleDevint {
             NameChooserController controller = loader.getController();
             controller.setScene(scene);
             controller.init();
-            controller.load(sequence.toJSON(), ConfigurationType.SEQUENCE, "Entrez un nom pour la séquence actuelle");
+            controller.initialize(sequence.toJSON(), ConfigurationType.SEQUENCE);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Creates the progress bar animation for a cycle.
+     *
+     * @param duration - the duration of the animation
+     */
+    public void updateProgressBar(int duration) {
+        progressBar.setProgress(0);
+        Timeline timeline = new Timeline();
+        KeyValue keyValue = new KeyValue(progressBar.progressProperty(), 1);
+        KeyFrame keyFrame = new KeyFrame(new Duration(duration), keyValue);
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.play();
+    }
+
+    /**
+     * Loads the JSON associated to a sequence into the window.
+     * @param json - the JSOn of the sequence
+     */
+    public void loadJSON(JSONObject json) {
+        Sequence sequence = new Sequence(json);
+        for (int i = 0; i < childrenControllers.size(); i++) {
+            childrenControllers.get(i).loadActive(sequence.getActivate(i));
         }
     }
 

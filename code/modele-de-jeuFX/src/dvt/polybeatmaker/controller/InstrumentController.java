@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Controller for one instrument.
+ * Controller for a single instrument.
  */
 public class InstrumentController {
 
@@ -38,15 +38,16 @@ public class InstrumentController {
         return instrument;
     }
 
-    public void setInstrument(Instrument instrument) {
+    /**
+     * Binds the buttons to an instrument and model.
+     *
+     * @param instrument - the instrument of this controller
+     * @param model      - the model of the game
+     * @throws MalformedURLException - if failing to initialize the picture of the instrument
+     */
+    public void init(Instrument instrument, PolybeatModel model) throws MalformedURLException {
         this.instrument = instrument;
-    }
-
-    public void setModel(PolybeatModel model) {
         this.model = model;
-    }
-
-    public void init() throws MalformedURLException {
         this.group = new ToggleGroup();
         buttons = new ArrayList<>();
         for (Node c : box1.getChildren()) {
@@ -58,6 +59,11 @@ public class InstrumentController {
         picture.setImage(new Image(instrument.getPicURL()));
     }
 
+    /**
+     * Initializes one of the buttons.
+     *
+     * @param c - the Node corresponding to the button
+     */
     public void initButton(Node c) {
         ToggleButton t = (ToggleButton) c;
         buttons.add(t);
@@ -66,8 +72,13 @@ public class InstrumentController {
         t.setToggleGroup(group);
     }
 
+    /**
+     * Toggles the sound of a button ON and OFF and highlights the selected button.
+     *
+     * @param b - the toggled button
+     */
     public void toggleSound(ToggleButton b) {
-        swapBorder(b);
+        b.setText(b.isSelected() ? "O" : "");
         try {
             if (activated != null) {
                 model.removeSound(activated);
@@ -84,14 +95,15 @@ public class InstrumentController {
             }
         } catch (MediaException e) {
             //temporary since we don't have all the sounds yet
-            System.out.println("Couldn't load sound");
+            System.out.println("Couldn't initialize sound");
         }
     }
 
-    private void swapBorder(ToggleButton b) {
-        b.setText(b.isSelected()? "O": "");
-    }
-
+    /**
+     * Returns the id of the selected button, or Sequence.INACTIVE if none is active.
+     *
+     * @return the id of the selected button
+     */
     public int getActive() {
         if (activatedButton == null) {
             return Sequence.INACTIVE;
@@ -100,14 +112,19 @@ public class InstrumentController {
         }
     }
 
+    /**
+     * Unloads the current sound, and loads the sound of the button of the specified id.
+     *
+     * @param id - the id of the button tied to the new sound
+     */
     public void loadActive(int id) {
         if (activatedButton != null) {
             activatedButton.setSelected(false);
             toggleSound(activatedButton);
         }
         if (id != Sequence.INACTIVE) {
-            buttons.get(id-1).setSelected(true);
-            toggleSound(buttons.get(id -1));
+            buttons.get(id - 1).setSelected(true);
+            toggleSound(buttons.get(id - 1));
         }
     }
 

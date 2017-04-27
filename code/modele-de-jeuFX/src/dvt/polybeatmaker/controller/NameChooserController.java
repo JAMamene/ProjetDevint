@@ -20,6 +20,9 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Controller for the window used to choose a name for a new creation.
+ */
 public class NameChooserController extends ControleDevint {
 
     @FXML private TextField nameField;
@@ -30,10 +33,13 @@ public class NameChooserController extends ControleDevint {
 
     private JSONObject onSave;
     private ConfigurationType type;
-    private String description;
     private ButtonMenu menu;
     private boolean errorDisplayed;
 
+    /**
+     * Manual call to mapTouchToActions() to avoid creating a new model just for this window.
+     * Also loads the window menu.
+     */
     @Override
     public void init() {
         mapTouchToActions();
@@ -53,12 +59,18 @@ public class NameChooserController extends ControleDevint {
         scene.mapKeyPressedToConsumer(KeyCode.BACK_SPACE, (x) -> backspace());
     }
 
+    /**
+     * Closes the window.
+     */
     @FXML
     private void exit() {
         Stage stage = (Stage) getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Saves the JSON in the appropriate folder.
+     */
     @FXML
     private void save() {
         checkName();
@@ -76,6 +88,9 @@ public class NameChooserController extends ControleDevint {
         }
     }
 
+    /**
+     * Manual backspace function since the key press is catched by the SceneDevint.
+     */
     private void backspace() {
         if (!nameField.getText().equals("")) {
             nameField.setText(nameField.getText().substring(0, nameField.getText().length() - 1));
@@ -83,6 +98,10 @@ public class NameChooserController extends ControleDevint {
         }
     }
 
+    /**
+     * Checks if the supplied name is valid.
+     * A name is valid if containing only letters, numbers, spaces and -_.
+     */
     private void checkName() {
         Pattern valid = Pattern.compile("[a-zA-Z \\-_0-9]+");
         Matcher match = valid.matcher(nameField.getText());
@@ -93,6 +112,9 @@ public class NameChooserController extends ControleDevint {
         }
     }
 
+    /**
+     * Displays an error message for an invalid name.
+     */
     private void displayError() {
         if (!errorDisplayed) {
             Label error = new Label("Nom invalide");
@@ -102,6 +124,9 @@ public class NameChooserController extends ControleDevint {
         }
     }
 
+    /**
+     * Removes the error message for an invalid name.
+     */
     private void removeError() {
         if (errorDisplayed) {
             box.getChildren().remove(1);
@@ -109,10 +134,16 @@ public class NameChooserController extends ControleDevint {
         }
     }
 
-    public void load(JSONObject onSave, ConfigurationType type, String description) {
+    /**
+     * Initializes the window with the JSONObject to save on confirmation.
+     *
+     * @param onSave - the JSON object to save
+     * @param type   - the type of the object to save
+     */
+    public void initialize(JSONObject onSave, ConfigurationType type) {
         this.onSave = onSave;
         this.type = type;
-        mainLabel.setText(description);
+        mainLabel.setText(type.getSaveText());
     }
 
 }

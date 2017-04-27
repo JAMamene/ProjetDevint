@@ -19,6 +19,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
+/**
+ * Controller for the window allowing the user to choose his recording in a list.
+ * Once chosen, the element will be converted to JSON and applied to a specified Consumer.
+ */
 public class ItemChooserController extends ControleDevint {
 
     @FXML private Label mainLabel;
@@ -30,6 +34,9 @@ public class ItemChooserController extends ControleDevint {
     private Consumer<JSONObject> onSelect;
     private ButtonMenu menu;
 
+    /**
+     * To avoid using a new model for the window, mapTouchToActions is called here.
+     */
     @Override
     protected void init() {
         mapTouchToActions();
@@ -45,15 +52,21 @@ public class ItemChooserController extends ControleDevint {
         scene.mapKeyPressedToConsumer(KeyCode.ENTER, (x) -> menu.confirm());
     }
 
-    public void load(ConfigurationType type, Consumer<JSONObject> onSelect, String mainText) {
+    /**
+     * Loads the list of elements into the window. If the save path is not found, it will be created.
+     *
+     * @param type     - the type of the elements to initialize
+     * @param onSelect - the Consumer of the JSONObject selected by the user
+     */
+    public void load(ConfigurationType type, Consumer<JSONObject> onSelect) {
         this.onSelect = onSelect;
         this.path = "../ressources/recordings/" + type.getFolder();
-        mainLabel.setText(mainText);
+        mainLabel.setText(type.getChoiceText());
         File directory = new File(path);
         if (!directory.exists()) {
-             if (!directory.mkdir()) {
-                 mainLabel.setText("Erreur dossier sauvegarde");
-             }
+            if (!directory.mkdir()) {
+                mainLabel.setText("Erreur dossier sauvegarde");
+            }
         }
         File[] folderContent = directory.listFiles();
         List<Button> buttons = new ArrayList<>();
@@ -70,10 +83,21 @@ public class ItemChooserController extends ControleDevint {
         this.menu = new ButtonMenu(buttons, scene.getSIVox(), Collections.singletonList((x) -> select()), 0);
     }
 
+    /**
+     * Removes the .json extension from a String.
+     *
+     * @param original - a filename with the json extension
+     * @return the same filename, without its extension
+     */
     private String removeJSON(String original) {
         return original.substring(0, original.length() - 5);
     }
 
+    /**
+     * Loads the element associated to the button in a JSON, and applies the specified Consumer.
+     *
+     * @param current - the button chosen by the user
+     */
     private void choose(Button current) {
         if (current == quit) {
             exit();
@@ -87,10 +111,16 @@ public class ItemChooserController extends ControleDevint {
         }
     }
 
+    /**
+     * Selects the currrent button.
+     */
     private void select() {
         choose(menu.getCurrentSelection());
     }
 
+    /**
+     * Closes the window.
+     */
     @FXML
     private void exit() {
         Stage stage = (Stage) getScene().getWindow();

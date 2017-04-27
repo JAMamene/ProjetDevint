@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Jeu devint principal.
+ * Main devint game.
  */
 public class MainGame extends JeuDevint {
 
@@ -30,6 +30,11 @@ public class MainGame extends JeuDevint {
         return model;
     }
 
+    /**
+     * Creates the game Model and controller for the main window.
+     *
+     * @return the controlleer of the main window
+     */
     @Override
     protected ControleDevint initControlAndScene() {
         ControleDevint controller = null;
