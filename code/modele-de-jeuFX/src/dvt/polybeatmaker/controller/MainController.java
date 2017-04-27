@@ -14,7 +14,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -25,20 +24,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Consumer;
-
-import static dvt.devint.ConstantesDevint.SYNTHESE_MAXIMALE;
 
 /**
  * Controller for the main screen.
  */
 public class MainController extends ControleDevint {
 
-    public static String DEFAULT_BORDER = "#FFFFFF;";
 
-    private static String[] BORDER_COLOR = new String[]{"#FFFFFF;", "#e6e6ff;", "#4d004d;", "#ffe6ff;", "#4d3319;", "#f2e6d9;"};
-
-    private int currentCSS = 0;
     private PolybeatModel model;
     private List<InstrumentController> childrenControllers;
     private ButtonMenu menu;
@@ -88,18 +80,9 @@ public class MainController extends ControleDevint {
 
     @Override
     public void mapTouchToActions() {
-        scene.mapKeyPressedToConsumer(KeyCode.F3, (x) -> swapBackgroundColor());
         scene.mapKeyPressedToConsumer(KeyCode.LEFT, (x) -> menu.moveSelection(-1));
         scene.mapKeyPressedToConsumer(KeyCode.RIGHT, (x) -> menu.moveSelection(1));
         scene.mapKeyPressedToConsumer(KeyCode.ENTER, (x) -> menu.confirm());
-    }
-
-    private void swapBackgroundColor() {
-        currentCSS = Math.floorMod(currentCSS + 1, 6);
-        InstrumentController.setHighlightColor(BORDER_COLOR[currentCSS]);
-        for (InstrumentController controller : childrenControllers) {
-            controller.updateHighlight();
-        }
     }
 
     @FXML

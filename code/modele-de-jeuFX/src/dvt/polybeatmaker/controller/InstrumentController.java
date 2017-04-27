@@ -21,10 +21,6 @@ import java.util.List;
  */
 public class InstrumentController {
 
-    private static String BORDER_PROPERTY = "-fx-border-width: 10;" +
-            "-fx-border-color: ";
-    private static String HIGHLIGHT_COLOR = MainController.DEFAULT_BORDER;
-
     @FXML private VBox box1;
     @FXML private VBox box2;
     @FXML private ImageView picture;
@@ -35,10 +31,6 @@ public class InstrumentController {
     private Sound activated;
     private ToggleButton activatedButton;
     private List<ToggleButton> buttons;
-
-    public static void setHighlightColor(String color) {
-        HIGHLIGHT_COLOR = color;
-    }
 
     public Instrument getInstrument() {
         return instrument;
@@ -80,7 +72,6 @@ public class InstrumentController {
                 activatedButton = null;
             } else {
                 if (activatedButton != null) {
-                    activatedButton.setStyle(instrument.getStyle());
                     activatedButton.setText("");
                     activatedButton.setSelected(false);
                 }
@@ -95,19 +86,7 @@ public class InstrumentController {
     }
 
     private void swapBorder(ToggleButton b) {
-        if (!b.isSelected()) {
-            b.setStyle(instrument.getStyle());
-            b.setText("");
-        } else {
-            b.setStyle(instrument.getStyle() + BORDER_PROPERTY + HIGHLIGHT_COLOR);
-            b.setText("O");
-        }
-    }
-
-    public void updateHighlight() {
-        if (activatedButton != null) {
-            activatedButton.setStyle(instrument.getStyle() + BORDER_PROPERTY + HIGHLIGHT_COLOR);
-        }
+        b.setText(b.isSelected()? "O": "");
     }
 
     public int getActive() {

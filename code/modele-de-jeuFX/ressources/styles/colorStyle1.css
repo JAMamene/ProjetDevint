@@ -62,6 +62,11 @@
     -fx-alignment: center;
 }
 
+.toggle-button:selected{
+    -fx-border-width: 10;
+    -fx-border-color: #FFFFFF;
+}
+
 .progress-bar > .bar {
     -fx-background-color: #00004d;
     -fx-background-insets: 0;

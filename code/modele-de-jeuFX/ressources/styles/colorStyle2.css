@@ -63,6 +63,11 @@
 }
 
 
+.toggle-button:selected{
+    -fx-border-width: 10;
+    -fx-border-color: #e6e6ff;
+}
+
 .progress-bar > .bar {
     -fx-background-color: #e6e6ff;
     -fx-background-insets: 0;
