@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 
@@ -16,6 +17,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class NameChooserController extends ControleDevint {
 
@@ -23,11 +26,13 @@ public class NameChooserController extends ControleDevint {
     @FXML private Button save;
     @FXML private Button cancel;
     @FXML private Label mainLabel;
+    @FXML private VBox box;
 
     private JSONObject onSave;
     private ConfigurationType type;
     private String description;
     private ButtonMenu menu;
+    private boolean errorDisplayed;
 
     @Override
     public void init() {
@@ -48,19 +53,6 @@ public class NameChooserController extends ControleDevint {
         scene.mapKeyPressedToConsumer(KeyCode.BACK_SPACE, (x) -> backspace());
     }
 
-    public void load(JSONObject onSave, ConfigurationType type, String description) {
-        this.onSave = onSave;
-        this.type = type;
-        mainLabel.setText(description);
-    }
-
-    private void backspace() {
-        if (!nameField.getText().equals("")) {
-            nameField.setText(nameField.getText().substring(0, nameField.getText().length() - 1));
-            nameField.positionCaret(nameField.getLength());
-        }
-    }
-
     @FXML
     private void exit() {
         Stage stage = (Stage) getScene().getWindow();
@@ -69,13 +61,9 @@ public class NameChooserController extends ControleDevint {
 
     @FXML
     private void save() {
-        if (nameField.getText().equals("")) {
+        checkName();
+        if (errorDisplayed) {
             return;
-        }
-        for (char c : nameField.getText().toCharArray()) {
-            if (!((c > 'a' && c < 'z') || (c > 'A' && c < 'Z') || c == '-' || c == ' ')) {
-                return;
-            }
         }
         try {
             String path = "../ressources/recordings/" + type.getFolder();
@@ -86,6 +74,45 @@ public class NameChooserController extends ControleDevint {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void backspace() {
+        if (!nameField.getText().equals("")) {
+            nameField.setText(nameField.getText().substring(0, nameField.getText().length() - 1));
+            nameField.positionCaret(nameField.getLength());
+        }
+    }
+
+    private void checkName() {
+        Pattern valid = Pattern.compile("[a-zA-Z \\-_0-9]+");
+        Matcher match = valid.matcher(nameField.getText());
+        if (!match.find() || !match.group().equals(nameField.getText()) || nameField.getText().trim().equals("")) {
+            displayError();
+        } else {
+            removeError();
+        }
+    }
+
+    private void displayError() {
+        if (!errorDisplayed) {
+            Label error = new Label("Nom invalide");
+            error.setPrefSize(1700, 130);
+            box.getChildren().add(1, error);
+            errorDisplayed = true;
+        }
+    }
+
+    private void removeError() {
+        if (errorDisplayed) {
+            box.getChildren().remove(1);
+            errorDisplayed = false;
+        }
+    }
+
+    public void load(JSONObject onSave, ConfigurationType type, String description) {
+        this.onSave = onSave;
+        this.type = type;
+        mainLabel.setText(description);
     }
 
 }
