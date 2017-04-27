@@ -37,19 +37,28 @@ public class NameChooserController extends ControleDevint {
     }
 
     @Override
-    protected void reset() {}
+    protected void reset() {
+    }
 
     @Override
     public void mapTouchToActions() {
         scene.mapKeyPressedToConsumer(KeyCode.LEFT, (x) -> menu.moveSelection(-1));
         scene.mapKeyPressedToConsumer(KeyCode.RIGHT, (x) -> menu.moveSelection(1));
         scene.mapKeyPressedToConsumer(KeyCode.ENTER, (x) -> menu.confirm());
+        scene.mapKeyPressedToConsumer(KeyCode.BACK_SPACE, (x) -> backspace());
     }
 
     public void load(JSONObject onSave, ConfigurationType type, String description) {
         this.onSave = onSave;
         this.type = type;
         mainLabel.setText(description);
+    }
+
+    private void backspace() {
+        if (!nameField.getText().equals("")) {
+            nameField.setText(nameField.getText().substring(0, nameField.getText().length() - 1));
+            nameField.positionCaret(nameField.getLength());
+        }
     }
 
     @FXML
@@ -70,7 +79,7 @@ public class NameChooserController extends ControleDevint {
         }
         try {
             String path = "../ressources/recordings/" + type.getFolder();
-            BufferedWriter bw = new BufferedWriter(new FileWriter(new File(path + nameField.getText() + ".json")));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(new File(path + nameField.getText().trim() + ".json")));
             bw.write(onSave.toString());
             bw.close();
             exit();
