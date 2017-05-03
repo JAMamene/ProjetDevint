@@ -5,6 +5,7 @@ import dvt.polybeatmaker.model.ConfigurationType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -28,11 +29,13 @@ public class ItemChooserController extends ControleDevint {
     @FXML private Label mainLabel;
     @FXML private VBox itemBox;
     @FXML private Button quit;
+    @FXML private ScrollPane scroll;
 
     private int buttonIndex = 0;
     private String path;
     private Consumer<JSONObject> onSelect;
     private ButtonMenu menu;
+    private List<Button> buttons;
 
     /**
      * To avoid using a new model for the window, mapTouchToActions is called here.
@@ -43,13 +46,30 @@ public class ItemChooserController extends ControleDevint {
     }
 
     @Override
-    protected void reset() {}
+    protected void reset() {
+    }
 
     @Override
     public void mapTouchToActions() {
-        scene.mapKeyPressedToConsumer(KeyCode.UP, (x) -> menu.moveSelection(1));
-        scene.mapKeyPressedToConsumer(KeyCode.DOWN, (x) -> menu.moveSelection(-1));
+        scene.mapKeyPressedToConsumer(KeyCode.UP, (x) -> {
+            menu.moveSelection(1);
+            centerButton(menu.getCurrentSelection());
+        });
+        scene.mapKeyPressedToConsumer(KeyCode.DOWN, (x) -> {
+            menu.moveSelection(-1);
+            centerButton(menu.getCurrentSelection());
+        });
         scene.mapKeyPressedToConsumer(KeyCode.ENTER, (x) -> menu.confirm());
+    }
+
+    public void centerButton(Button b) {
+        if (b == quit) {
+            return;
+        }
+        double h = scroll.getContent().getBoundsInLocal().getHeight();
+        double y = (b.getBoundsInParent().getMaxY() + b.getBoundsInParent().getMinY()) / 2.0;
+        double v = scroll.getViewportBounds().getHeight();
+        scroll.setVvalue(scroll.getVmax() * ((y - 0.5 * v) / (h - v)));
     }
 
     /**
@@ -69,7 +89,7 @@ public class ItemChooserController extends ControleDevint {
             }
         }
         File[] folderContent = directory.listFiles();
-        List<Button> buttons = new ArrayList<>();
+        buttons = new ArrayList<>();
         buttons.add(quit);
         if (folderContent != null) {
             for (File file : folderContent) {
@@ -80,7 +100,8 @@ public class ItemChooserController extends ControleDevint {
                 buttons.add(0, button);
             }
         }
-        this.menu = new ButtonMenu(buttons, scene.getSIVox(), Collections.singletonList((x) -> select()), 0);
+        int start = buttons.size() == 1 ? 0 : buttons.size() - 1;
+        this.menu = new ButtonMenu(buttons, scene.getSIVox(), Collections.singletonList((x) -> select()), start);
     }
 
     /**
@@ -112,7 +133,7 @@ public class ItemChooserController extends ControleDevint {
     }
 
     /**
-     * Selects the currrent button.
+     * Selects the current button.
      */
     private void select() {
         choose(menu.getCurrentSelection());
