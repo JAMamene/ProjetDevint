@@ -41,6 +41,8 @@ public class MainController extends ControleDevint {
     @FXML private Button load;
     @FXML private Button save;
     @FXML private Button quit;
+    @FXML private Button lastSet;
+    @FXML private Button nextSet;
 
 
     public void setPolybeatModel(PolybeatModel model) {
@@ -82,8 +84,10 @@ public class MainController extends ControleDevint {
      * Cleaning all the instruments before loading a new set.
      */
     private void clearInstruments(){
-        for(int i = 1; i < mainBox.getChildren().size()-2; i++){
-            mainBox.getChildren().remove(i);
+        for(int i = 0; i < mainBox.getChildren().size()-1; i++){
+            if(mainBox.getChildren().get(i) != lastSet && mainBox.getChildren().get(i) != nextSet){
+                mainBox.getChildren().remove(i);
+            }
         }
         model.removeAllSound();
     }
