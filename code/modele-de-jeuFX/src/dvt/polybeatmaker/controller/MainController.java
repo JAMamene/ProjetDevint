@@ -19,7 +19,6 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,7 +33,6 @@ public class MainController extends ControleDevint {
     private PolybeatModel model;
     private List<InstrumentController> childrenControllers;
     private ButtonMenu menu;
-
 
     @FXML private ProgressBar progressBar;
     @FXML private HBox mainBox;
@@ -78,34 +76,6 @@ public class MainController extends ControleDevint {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Cleaning all the instruments before loading a new set.
-     */
-    private void clearInstruments(){
-        for(int i = 0; i < mainBox.getChildren().size()-1; i++){
-            if(mainBox.getChildren().get(i) != lastSet && mainBox.getChildren().get(i) != nextSet){
-                mainBox.getChildren().remove(i);
-            }
-        }
-        model.removeAllSound();
-    }
-
-    /**
-     *
-     */
-
-
-    @Override
-    protected void reset() {
-    }
-
-    @Override
-    public void mapTouchToActions() {
-        scene.mapKeyPressedToConsumer(KeyCode.LEFT, (x) -> menu.moveSelection(-1));
-        scene.mapKeyPressedToConsumer(KeyCode.RIGHT, (x) -> menu.moveSelection(1));
-        scene.mapKeyPressedToConsumer(KeyCode.ENTER, (x) -> menu.confirm());
     }
 
     /**
@@ -164,6 +134,17 @@ public class MainController extends ControleDevint {
         }
     }
 
+    @Override
+    protected void reset() {
+    }
+
+    @Override
+    public void mapTouchToActions() {
+        scene.mapKeyPressedToConsumer(KeyCode.LEFT, (x) -> menu.moveSelection(-1));
+        scene.mapKeyPressedToConsumer(KeyCode.RIGHT, (x) -> menu.moveSelection(1));
+        scene.mapKeyPressedToConsumer(KeyCode.ENTER, (x) -> menu.confirm());
+    }
+
     /**
      * Creates the progress bar animation for a cycle.
      *
@@ -199,6 +180,17 @@ public class MainController extends ControleDevint {
         clearInstruments();
         initSet(moveToSet(-1));
 
+    }
+
+    /**
+     * Cleaning all the instruments before loading a new set.
+     */
+    private void clearInstruments() {
+        mainBox.getChildren().clear();
+        mainBox.getChildren().add(lastSet);
+        mainBox.getChildren().add(nextSet);
+        model.removeAllSound();
+        childrenControllers.clear();
     }
 
     /**
