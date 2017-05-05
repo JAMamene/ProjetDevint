@@ -2,10 +2,7 @@ package dvt.polybeatmaker.controller;
 
 import dvt.devint.SceneDevint;
 import dvt.jeu.simple.ControleDevint;
-import dvt.polybeatmaker.model.ConfigurationType;
-import dvt.polybeatmaker.model.Instrument;
-import dvt.polybeatmaker.model.PolybeatModel;
-import dvt.polybeatmaker.model.Sequence;
+import dvt.polybeatmaker.model.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -14,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -21,9 +19,12 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static dvt.polybeatmaker.model.Set.moveToSet;
 
 /**
  * Controller for the main screen.
@@ -34,11 +35,13 @@ public class MainController extends ControleDevint {
     private List<InstrumentController> childrenControllers;
     private ButtonMenu menu;
 
+
     @FXML private ProgressBar progressBar;
     @FXML private HBox mainBox;
     @FXML private Button load;
     @FXML private Button save;
     @FXML private Button quit;
+
 
     public void setPolybeatModel(PolybeatModel model) {
         this.model = model;
@@ -49,12 +52,21 @@ public class MainController extends ControleDevint {
      */
     @Override
     protected void init() {
+        childrenControllers = new ArrayList<>();
+        model.getScheduler().setController(this);
+        initSet(Set.ROCK);
+    }
+
+    /**
+     * Load a set of Instruments
+     *
+     * @param set - Set of Instrument
+     */
+    private void initSet(Set set) {
         try {
-            childrenControllers = new ArrayList<>();
-            model.getScheduler().setController(this);
-            for (Instrument instrument : Instrument.values()) {
+            for (Instrument instrument : set.getInstruments()) {
                 FXMLLoader loader = new FXMLLoader(new File("../ressources/fxml/instrument.fxml").toURI().toURL());
-                mainBox.getChildren().add(loader.load());
+                mainBox.getChildren().add(1, loader.load());
                 InstrumentController controller = loader.getController();
                 childrenControllers.add(controller);
                 controller.init(instrument, model);
@@ -66,8 +78,24 @@ public class MainController extends ControleDevint {
         }
     }
 
+    /**
+     * Cleaning all the instruments before loading a new set.
+     */
+    private void clearInstruments(){
+        for(int i = 1; i < mainBox.getChildren().size()-2; i++){
+            mainBox.getChildren().remove(i);
+        }
+        model.removeAllSound();
+    }
+
+    /**
+     *
+     */
+
+
     @Override
-    protected void reset() {}
+    protected void reset() {
+    }
 
     @Override
     public void mapTouchToActions() {
@@ -148,6 +176,7 @@ public class MainController extends ControleDevint {
 
     /**
      * Loads the JSON associated to a sequence into the window.
+     *
      * @param json - the JSOn of the sequence
      */
     public void loadJSON(JSONObject json) {
@@ -157,5 +186,26 @@ public class MainController extends ControleDevint {
         }
     }
 
+    /**
+     * Loads the previous set of instrument.
+     */
+    @FXML
+    void loadLastSet(MouseEvent event) {
+        childrenControllers = new ArrayList<>();
+        clearInstruments();
+        initSet(moveToSet(-1));
+
+    }
+
+    /**
+     * Loads the next set of instrument.
+     */
+    @FXML
+    void loadNextSet(MouseEvent event) {
+        childrenControllers = new ArrayList<>();
+        clearInstruments();
+        initSet(moveToSet(1));
+
+    }
 
 }

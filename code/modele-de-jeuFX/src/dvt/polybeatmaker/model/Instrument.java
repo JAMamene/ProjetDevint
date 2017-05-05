@@ -9,7 +9,10 @@ public enum Instrument {
     GUITAR("guitar", "#8ee4f2"),
     ELECTRIC_GUITAR("electric_guitar", "#8ef2a1"),
     BASS("bass", "#f28e99"),
-    DRUMS("drums", "#c33646");
+    DRUMS("drums", "#c33646"),
+    PIANOG("piano_g", "#a48ef2"),
+    PIANOD("piano_d", "#f28e99"),
+    MISC("misc", "#c44646 ");
 
     private String name;
     private String color;

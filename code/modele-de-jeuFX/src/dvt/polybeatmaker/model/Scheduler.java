@@ -13,7 +13,7 @@ public class Scheduler extends Timer {
 
     private boolean started;
 
-    private final List<Sound> sounds;
+    private List<Sound> sounds;
 
     public Scheduler() {
         super();
@@ -53,6 +53,10 @@ public class Scheduler extends Timer {
 
     public boolean isStarted() {
         return started;
+    }
+
+    public void stopAllSound(){
+        sounds = Collections.synchronizedList(new ArrayList<>());
     }
 
 }

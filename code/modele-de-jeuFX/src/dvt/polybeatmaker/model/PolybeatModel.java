@@ -42,4 +42,10 @@ public class PolybeatModel extends ModeleDevint {
         scheduler.removeFromQueue(s);
     }
 
+    /**
+     * Stop all sound from the loop.
+     */
+    public void removeAllSound() {
+        scheduler.stopAllSound();
+    }
 }
